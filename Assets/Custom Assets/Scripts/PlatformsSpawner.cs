@@ -5,22 +5,23 @@ using UnityEngine;
 public class PlatformsSpawner : MonoBehaviour
 {
 
-    public int amount = 10;
-    public bool isGameStart = true;
-    public Vector3 center;
-    public GameObject platform;
+    public int amount = 1;
+    
     // Start is called before the first frame update
     void Start()
     {
-        if (isGameStart == true){
-            isGameStart = false;
-            Instantiate(platform, center, Quaternion.identity);
-        }
+        GameEvents.current.onPlayerPlatformLand += onPlayerLand;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
+
+    private void onPlayerLand(GameObject active_platform) {
+        active_platform.GetComponent<PlatformManager>().visitThisPlatform(active_platform, gameObject);
+    }
+
+    
 }

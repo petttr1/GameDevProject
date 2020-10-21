@@ -11,9 +11,9 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 2811f2dfbc9e53d40a486f0ba1e4ce49,
     type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 2
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 1
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -57,9 +57,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_225DCBEE: 53.49
-    - Vector1_D8C8CDF1: -0
-    - Vector1_F7AB135A: 42.73
+    - Vector1_225DCBEE: 50
+    - Vector1_D8C8CDF1: 0.1
+    - Vector1_F7AB135A: 6.7
     - _AO: 1.65
     - _BaseLight: 0.517
     - _BumpScale: 1
@@ -69,6 +69,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.674
     - _GlossyReflections: 1
+    - _GlowStrength: 6.7
     - _Metallic: 0
     - _Mode: 0
     - _Occlusion: 10.41
@@ -81,7 +82,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_8F773D59: {r: 4, g: 4, b: 4, a: 0}
+    - Color_8F773D59: {r: 3.9999995, g: 3.9999995, b: 3.9999995, a: 0}
     - Color_CFF17E44: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.6226415, g: 0.017621934, b: 0.017621934, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
