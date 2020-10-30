@@ -6,9 +6,7 @@ namespace Platform
 {
     public class PlatformsSpawner : MonoBehaviour
     {
-
-        public int amount = 1;
-
+        public Vector3 RespawnPoint;
         // Start is called before the first frame update
         void Start()
         {
@@ -36,6 +34,8 @@ namespace Platform
                 // spawn new platforms
                 active_platform.GetComponentInChildren<PlatformManager>().VisitThisPlatform(active_platform, gameObject);
             }
+            RespawnPoint = active_platform.transform.position;
+            RespawnPoint.y += 5;
         }
 
 

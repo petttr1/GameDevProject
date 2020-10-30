@@ -14,7 +14,8 @@ namespace Platform
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         private bool Dash;
-        
+        private bool Respawn;
+
         private void Start()
         {
             m_Cam = Camera.main.transform;
@@ -31,6 +32,10 @@ namespace Platform
             if (!Dash)
             {
                 Dash = Input.GetMouseButtonDown(1);
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RespawnPlayer();
             }
         }
 
@@ -57,6 +62,12 @@ namespace Platform
             m_Character.Move(m_Move, m_Jump);
             m_Jump = false;
             Dash = false;
+        }
+
+        private void RespawnPlayer()
+        {
+            transform.position = GetComponent<PlatformsSpawner>().RespawnPoint;
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
     }
 }

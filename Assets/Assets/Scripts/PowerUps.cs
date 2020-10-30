@@ -30,11 +30,17 @@ namespace Platform
                 currentDashTime += Time.deltaTime;
                 if (currentDashTime >= maxDashTime)
                 {
-                    player_rigidbody.velocity = originalVelocity;
+                    // restore the original velocity - we dont want the player to go flying into infinity and beyond
+                    player_rigidbody.velocity = transform.TransformDirection(originalVelocity);
                     dash = false;
                 }
                 else
                 {
+                    // apply negative gravity force - we want the dash to be exactly straight
+                    Vector3 extraGravityForce = (Physics.gravity * GetComponent<ThirdPersonCharacter>().m_GravityMultiplier) - Physics.gravity;
+                    player_rigidbody.AddForce(-extraGravityForce);
+
+                    // apply the dash power
                     player_rigidbody.AddForce(transform.forward * dashPower);
                 }
             }
@@ -43,7 +49,7 @@ namespace Platform
         public void Dash(Vector3 move)
         {
             currentDashTime = 0;
-            originalVelocity = player_rigidbody.velocity;
+            originalVelocity = transform.InverseTransformDirection(player_rigidbody.velocity);
             dash = true;
         }
 

@@ -7,7 +7,8 @@ namespace Platform
     public class Lightness : MonoBehaviour
     {
         public float lightness = 100;
-
+        //whether to subtract lightness every tick
+        public bool fading = false;
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
 
@@ -16,6 +17,10 @@ namespace Platform
         {
             propBlock = new MaterialPropertyBlock();
             rend = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+            if (rend == null)
+            {
+                rend = gameObject.GetComponentInChildren<MeshRenderer>();
+            }
         }
 
         // Update is called once per frame
@@ -23,11 +28,14 @@ namespace Platform
         {
             if (lightness >= 0)
             {
-                lightness -= 0.1f;
-                lightness = Mathf.Clamp(lightness, 0.0f, 100.0f);
+                if (fading)
+                {
+                    lightness -= 0.1f;
+                    lightness = Mathf.Clamp(lightness, 0.0f, 100.0f);
+                }
+                UpdateLightnessVisual();
             }
             // else Death() = TODO
-            UpdateLightnessVisual();
         }
 
         void UpdateLightnessVisual()
@@ -40,6 +48,11 @@ namespace Platform
         public void RefillLightness(float amount)
         {
             lightness += amount;
+        }
+
+        public void DealDamage(float amount)
+        {
+            lightness -= amount;
         }
     }
 }
