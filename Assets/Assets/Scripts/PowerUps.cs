@@ -19,7 +19,7 @@ namespace Platform
         {
             player_rigidbody = gameObject.GetComponent<Rigidbody>();
             currentDashTime = 0;
-            maxDashTime = 0.3f;
+            maxDashTime = 0.1f;
         }
 
         // Update is called once per frame
@@ -28,7 +28,6 @@ namespace Platform
             if (dash)
             {
                 currentDashTime += Time.deltaTime;
-                Debug.Log(currentDashTime);
                 if (currentDashTime >= maxDashTime)
                 {
                     player_rigidbody.velocity = originalVelocity;

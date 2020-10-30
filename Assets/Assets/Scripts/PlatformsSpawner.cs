@@ -23,15 +23,19 @@ namespace Platform
 
         private void onPlayerLand(GameObject active_platform)
         {
-            //deal damage to old platforms
-            GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
-
-            foreach (GameObject platform in platforms)
+            if (active_platform.GetComponentInChildren<PlatformManager>().visited == false)
             {
-                platform.GetComponent<PlatformManager>().DealDamage();
+
+                //deal damage to old platforms
+                GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+
+                foreach (GameObject platform in platforms)
+                {
+                    platform.GetComponentInChildren<PlatformManager>().DealDamage();
+                }
+                // spawn new platforms
+                active_platform.GetComponentInChildren<PlatformManager>().VisitThisPlatform(active_platform, gameObject);
             }
-            // spawn new platforms
-            active_platform.GetComponent<PlatformManager>().VisitThisPlatform(active_platform, gameObject);
         }
 
 

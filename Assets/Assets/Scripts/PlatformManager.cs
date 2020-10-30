@@ -24,8 +24,7 @@ namespace Platform
             // if the platform has 0 hp, despawn it
             if (hitPoints <= 0)
             {
-                Destroy(GetComponent<BoxCollider>());
-                Destroy(gameObject);
+                gameObject.GetComponentInParent<PlatformDespawner>().Despawn();
             }
         }
 
@@ -51,8 +50,8 @@ namespace Platform
             Vector3 next_pos = pos + player_orientation * 35;
             int choice_index = Random.Range(0, platformChoices.Length);
             GameObject paltform_choice = platformChoices[choice_index];
-            GameObject next_platform1 = Instantiate(paltform_choice, next_pos, Quaternion.identity) as GameObject;
-            next_platform1.GetComponent<PlatformManager>().platformChoices = platformChoices;
+            GameObject next_platform = Instantiate(paltform_choice, next_pos, Quaternion.identity) as GameObject;
+            next_platform.GetComponentInChildren<PlatformManager>().platformChoices = platformChoices;
         }
         private void UpdateVisual()
         {

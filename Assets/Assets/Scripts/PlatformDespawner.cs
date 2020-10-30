@@ -17,5 +17,10 @@ namespace Platform
         {
 
         }
+
+        public void Despawn()
+        {
+            Destroy(gameObject);
+        }
     }
 }
