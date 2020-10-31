@@ -966,7 +966,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791094571}
-  m_LocalRotation: {x: -0.07058946, y: -0.2113759, z: 0.015307643, w: -0.9747323}
+  m_LocalRotation: {x: -0.07058945, y: -0.2113759, z: 0.0153076425, w: -0.9747323}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1040,7 +1040,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808083215}
-  m_LocalRotation: {x: -0.12647007, y: -0.21014741, z: 0.027425768, w: -0.9690672}
+  m_LocalRotation: {x: -0.12647006, y: -0.2101474, z: 0.027425764, w: -0.9690672}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1048,7 +1048,7 @@ Transform:
   m_Father: {fileID: 188408176}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &846839541
+--- !u!1001 &891702346
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1117,24 +1117,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
         type: 3}
-      propertyPath: r1
-      value: 50
+      propertyPath: platformChoices.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
         type: 3}
-      propertyPath: r2
-      value: 100
-      objectReference: {fileID: 0}
+      propertyPath: platformChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: 1032887539830800204, guid: be90abf55f1ceb94a91961f11af75285,
+        type: 3}
     - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
         type: 3}
-      propertyPath: r3
-      value: 150
-      objectReference: {fileID: 0}
+      propertyPath: platformChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: 390583279833156744, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
     - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
         type: 3}
-      propertyPath: AmountSpawned
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: platformChoices.Array.data[2]
+      value: 
+      objectReference: {fileID: 5392218167405230616, guid: 8c60c9b57b52b764ab4258a0b26f84f1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994c1505d27eeb546aac2989009c2708, type: 3}
 --- !u!1 &936188014

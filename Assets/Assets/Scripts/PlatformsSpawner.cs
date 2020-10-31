@@ -7,6 +7,7 @@ namespace Platform
     public class PlatformsSpawner : MonoBehaviour
     {
         public Vector3 RespawnPoint;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -21,23 +22,26 @@ namespace Platform
 
         private void onPlayerLand(GameObject active_platform)
         {
-            if (active_platform.GetComponentInChildren<PlatformManager>().visited == false)
+            // if the platform was not visited yet
+            if (active_platform.GetComponent<PlatformManager>().visited == false)
             {
 
-                //deal damage to old platforms
+                //deal damage to all other platforms
                 GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
 
                 foreach (GameObject platform in platforms)
                 {
-                    platform.GetComponentInChildren<PlatformManager>().DealDamage();
+                    if (platform != active_platform.transform.parent.gameObject)
+                    {
+                        platform.GetComponentInChildren<PlatformManager>().DealDamage();
+                    }
                 }
                 // spawn new platforms
-                active_platform.GetComponentInChildren<PlatformManager>().VisitThisPlatform(active_platform, gameObject);
+                active_platform.GetComponent<PlatformManager>().VisitThisPlatform(active_platform, gameObject);
             }
+            // set our respawn point
             RespawnPoint = active_platform.transform.position;
             RespawnPoint.y += 5;
         }
-
-
     }
 }

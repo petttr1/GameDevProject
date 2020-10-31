@@ -214,19 +214,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bbe0bba84d8be1d4bbb3b879b7e0ab74, type: 2}
-    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-      propertyPath: platformChoices.Array.data[1]
-      value: 
-      objectReference: {fileID: 1032887539830800204}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994c1505d27eeb546aac2989009c2708, type: 3}
---- !u!1 &1032887539830800204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 390583279833156744, guid: 994c1505d27eeb546aac2989009c2708,
-    type: 3}
-  m_PrefabInstance: {fileID: 810134266802549700}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1184154436838699693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1968313819467481449, guid: 994c1505d27eeb546aac2989009c2708,
