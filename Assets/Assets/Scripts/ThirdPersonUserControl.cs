@@ -66,7 +66,8 @@ namespace Platform
 
         private void RespawnPlayer()
         {
-            transform.position = GetComponent<PlatformsSpawner>().RespawnPoint;
+            var gameControl = GameObject.FindGameObjectWithTag("GameController");
+            transform.position = gameControl.GetComponent<PlatformsSpawner>().RespawnPoint;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
     }

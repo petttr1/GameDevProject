@@ -7,26 +7,19 @@ namespace Platform
     public class PlatformManager : MonoBehaviour
     {
         public int hitPoints = 5;
-        public int AmountSpawned = 5;
 
         //radii of platform spawning zones
-        public float r1 = 50;
-        public float r2 = 100;
-        public float r3 = 150;
+        public float MinRadius;
+        public float MaxRadius;
         public bool visited = false;
         public GameObject[] platformChoices;
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
-        private float[] radii;
         // Start is called before the first frame update
         void Start()
         {
             propBlock = new MaterialPropertyBlock();
             rend = GetComponent<Renderer>();
-            radii = new float[3];
-            radii[0] = r1;
-            radii[1] = r2;
-            radii[2] = r3;
         }
 
         // Update is called once per frame
@@ -39,55 +32,54 @@ namespace Platform
             }
         }
 
-        public void VisitThisPlatform(GameObject platform, GameObject player)
+        public void VisitThisPlatform()
         {
-            // iof the paltform is not yet visited
+            // if the paltform is not yet visited
             if (visited == false)
             {
                 // remove its emission
                 UpdateVisual();
-                // spawn new paltforms (around this one)
-                SpawnNewPlatforms(platform);
-                // refill players' lightness
-                player.GetComponent<Lightness>().RefillLightness(100);
                 // mark it as visited
                 visited = true;
             }
         }
-        private void SpawnNewPlatforms(GameObject platform)
-        {
-            for (int i = 0; i < AmountSpawned; i++)
-            {
-                Vector3 next_pos = CalculateNextPosition(platform);
-                int choice_index = Random.Range(0, platformChoices.Length);
-                GameObject platform_choice = platformChoices[choice_index];
-                GameObject next_platform = Instantiate(platform_choice, next_pos, Quaternion.identity);
-                // rotate the platform by 0-90 degrees by the vertical axis 
-                // (the paltfrom is square, other angles would have no visible effect)
-                float yaw = Random.Range(0f, 90f);
-                // rotate the platform by (-5)-5 degrees in transverse anf longitudal axes.
-                // (roll, pitch and yaw add variations to the platforms, the world will seem more diverse)
-                float pitch = Random.Range(-5f, 5f);
-                float roll = Random.Range(-5f, 5f);
-                // rotate the newly spawned paltform
-                next_platform.transform.eulerAngles = new Vector3(roll, yaw, pitch);
-                // pass along the original platfom choices
-                next_platform.GetComponentInChildren<PlatformManager>().platformChoices = platformChoices;
 
-            }
+        public void SpawnPlatformOfType(GameObject platform, Vector3 center)
+        {
+            Vector3 next_pos = CalculateNextPosition(platform, center);
+            GameObject next_platform = Instantiate(platform, next_pos, Quaternion.identity);
+            // rotate the platform by 0-90 degrees by the vertical axis 
+            // (the paltfrom is square, other angles would have no visible effect)
+            float yaw = Random.Range(0f, 90f);
+            // rotate the platform by (-5)-5 degrees in transverse and longitudal axes.
+            // (roll, pitch and yaw add variations to the platforms, the world will seem more diverse)
+            float pitch = Random.Range(-5f, 5f);
+            float roll = Random.Range(-5f, 5f);
+            // rotate the newly spawned platform
+            next_platform.transform.eulerAngles = new Vector3(roll, yaw, pitch);
+            // pass along the original platfom choices
+            next_platform.GetComponentInChildren<PlatformManager>().platformChoices = platformChoices;
         }
 
-        Vector3 CalculateNextPosition(GameObject orig_platform)
+        Vector3 CalculateNextPosition(GameObject next_platform, Vector3 center)
         {
-            float radius = radii[Random.Range(0, 3)];
+            var nextPlatfromManager = next_platform.GetComponentInChildren<PlatformManager>();
+            // get radius derived from the next paltfroms' radii choices
+            // this is the distance the platform will be from current platform
+            float radius = Random.Range(nextPlatfromManager.MinRadius, nextPlatfromManager.MaxRadius);
+            // get an angle (position on a circle)
             float random_angle = Random.Range(0f, 2*Mathf.PI);
+            // calculate x and y coordinate on a unit circle and multiply by radius (distance)
             float x_coord = Mathf.Cos(random_angle) * radius;
             float z_coord = Mathf.Sin(random_angle) * radius;
-            float y_coord = Random.Range(-5f, 5f);
-            return new Vector3(x_coord, orig_platform.transform.position.y + y_coord, z_coord);
+            // change height a bit (not the main goal, but we want variability)
+            float y_coord = Random.Range(-3f, 3f);
+            // add the new coords to the original (makes the platfrom we landed on the center of a new coordinate system
+            // in which we generate the new platform)
+            return new Vector3(x_coord, y_coord, z_coord) + center;
         }
 
-        private void UpdateVisual()
+        public void UpdateVisual()
         {
             rend.GetPropertyBlock(propBlock);
             propBlock.SetFloat("_GlowStrength", 0.0f);
