@@ -46,6 +46,11 @@ namespace Platform
             }
         }
 
+        public void AddPowerUp(int type) 
+        {
+            Debug.Log("PowerUp added: " + type);
+        }
+
         public void Dash(Vector3 move)
         {
             currentDashTime = 0;

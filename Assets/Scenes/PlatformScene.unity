@@ -749,6 +749,8 @@ MonoBehaviour:
   AmountSpawned: 0
   MaxEnemyPlatforms: 5
   MaxRewardPlatforms: 1
+  RewardPlatformProba: 0.01
+  EnemyPlatformProba: 0.01
   EnemyPlatform: {fileID: 0}
   RewardPlatform: {fileID: 0}
   BasicPlatform: {fileID: 0}
@@ -1047,7 +1049,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808083215}
-  m_LocalRotation: {x: -0.12647006, y: -0.2101474, z: 0.027425764, w: -0.9690672}
+  m_LocalRotation: {x: -0.12647007, y: -0.21014741, z: 0.027425768, w: -0.9690672}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1596,7 +1598,7 @@ GameObject:
   - component: {fileID: 1403615469}
   m_Layer: 0
   m_Name: GamePlayManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1618,6 +1620,8 @@ MonoBehaviour:
   AmountSpawned: 5
   MaxEnemyPlatforms: 5
   MaxRewardPlatforms: 1
+  RewardPlatformProba: 0.01
+  EnemyPlatformProba: 0.3
   EnemyPlatform: {fileID: 1032887539830800204, guid: be90abf55f1ceb94a91961f11af75285,
     type: 3}
   RewardPlatform: {fileID: 5392218167405230616, guid: 8c60c9b57b52b764ab4258a0b26f84f1,
