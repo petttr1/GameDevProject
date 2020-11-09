@@ -7,6 +7,7 @@ namespace Platform
     public class Lightness : MonoBehaviour
     {
         public float lightness = 100;
+        public bool enemy;
         //whether to subtract lightness every tick
         public bool fading = false;
         private MaterialPropertyBlock propBlock;
@@ -35,7 +36,10 @@ namespace Platform
                 }
                 UpdateLightnessVisual();
             }
-            // else Death() = TODO
+            else if (enemy)
+            {
+                Destroy(gameObject);
+            }
         }
 
         void UpdateLightnessVisual()

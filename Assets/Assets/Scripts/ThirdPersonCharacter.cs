@@ -41,7 +41,7 @@ namespace Platform
 		}
 
 
-		public void Move(Vector3 move, bool jump)
+		public void Move(Vector3 move, bool jump, bool dash)
 		{
 
 			// convert the world relative moveInput vector into a local-relative
@@ -69,7 +69,7 @@ namespace Platform
 			else
 			{
 				// adds extra gravity to the fall = simualtion of free fall?
-				HandleAirborneMovement(move);
+				HandleAirborneMovement(move, dash);
 			}
 
             // send input and other state parameters to the animator
@@ -114,13 +114,13 @@ namespace Platform
 		}
 
 
-		void HandleAirborneMovement(Vector3 move)
+		void HandleAirborneMovement(Vector3 move, bool dash)
 		{
-			// apply extra gravity from multiplier:
 			// HEAVILY MODIFIED. CONTRARY TO THE ORIGINAL FUNCTION, WE WANT TO ALLOW IN AIR PLAYER MOVEMENT
-			Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
-			m_Rigidbody.AddForce(extraGravityForce);
-			// Actually, this was the only modification needed :D 
+			if (!dash) {
+				Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
+				m_Rigidbody.AddForce(extraGravityForce);
+			}
 			m_Rigidbody.AddForce(move * InAirMovementImpact);
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
 		}

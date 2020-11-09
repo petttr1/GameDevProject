@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 // !!! THIS CODE IS FROM STANDARD UNITY ASSETS. CUSTOM FUNCTIONS WILL BE MARKED BY A COMMENT !!! //
-// MOST OF THE TIME, ALREADY EXISTING FUNCTIONS HAVE OFTEN BEEN UPDATED OR MODIFIED //
+// MOST OF THE TIME, ALREADY EXISTING FUNCTIONS HAVE BEEN UPDATED OR MODIFIED //
 namespace Platform
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
@@ -14,7 +14,7 @@ namespace Platform
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         private bool Dash;
-        private bool Respawn;
+        private bool IsDashing;
 
         private void Start()
         {
@@ -53,15 +53,16 @@ namespace Platform
 
             if (Dash)
             {
-                gameObject.GetComponent<PowerUps>().Dash(m_Move);
+                gameObject.GetComponent<PowerUps>().Dash();
+                Dash = false;
             }
 
             if (m_Move.magnitude > 1f) m_Move.Normalize();
 
             // pass all parameters to the character control script
-            m_Character.Move(m_Move, m_Jump);
+            IsDashing = gameObject.GetComponent<PowerUps>().IsDashing();
+            m_Character.Move(m_Move, m_Jump, IsDashing);
             m_Jump = false;
-            Dash = false;
         }
 
         private void RespawnPlayer()

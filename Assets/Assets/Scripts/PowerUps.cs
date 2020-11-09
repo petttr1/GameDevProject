@@ -36,12 +36,9 @@ namespace Platform
                 }
                 else
                 {
-                    // apply negative gravity force - we want the dash to be exactly straight
-                    Vector3 extraGravityForce = (Physics.gravity * GetComponent<ThirdPersonCharacter>().m_GravityMultiplier) - Physics.gravity;
-                    player_rigidbody.AddForce(-extraGravityForce);
-
                     // apply the dash power
-                    player_rigidbody.AddForce(transform.forward * dashPower);
+                    // player_rigidbody.AddForce(transform.forward * dashPower);
+                    player_rigidbody.velocity = transform.forward.normalized * dashPower;
                 }
             }
         }
@@ -51,10 +48,11 @@ namespace Platform
             Debug.Log("PowerUp added: " + type);
         }
 
-        public void Dash(Vector3 move)
+        public void Dash()
         {
             currentDashTime = 0;
-            originalVelocity = transform.InverseTransformDirection(player_rigidbody.velocity);
+            Vector3 velo = player_rigidbody.velocity;
+            originalVelocity = transform.InverseTransformDirection(new Vector3(velo.x, 0, velo.z));
             dash = true;
         }
 
@@ -66,6 +64,11 @@ namespace Platform
         public void DoubleJump(Vector3 move)
         {
 
+        }
+
+        public bool IsDashing()
+        {
+            return dash;
         }
     }
 }
