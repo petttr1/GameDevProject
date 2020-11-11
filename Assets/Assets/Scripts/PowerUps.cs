@@ -9,6 +9,7 @@ namespace Platform
         Rigidbody player_rigidbody;
 
         public float dashPower;
+        public int maxDashCount = 3;
 
         private float maxDashTime;
         private bool dash;
@@ -33,6 +34,7 @@ namespace Platform
                     // restore the original velocity - we dont want the player to go flying into infinity and beyond
                     player_rigidbody.velocity = transform.TransformDirection(originalVelocity);
                     dash = false;
+                    gameObject.GetComponent<ThirdPersonUserControl>().EndDash();
                 }
                 else
                 {
@@ -56,6 +58,14 @@ namespace Platform
             dash = true;
         }
 
+        public void InterruptDash()
+        {
+            if (dash)
+            {
+                currentDashTime = maxDashTime;
+            }
+        }
+
         public void GravityBoots(Vector3 move)
         {
 
@@ -69,6 +79,11 @@ namespace Platform
         public bool IsDashing()
         {
             return dash;
+        }
+
+        public int GetMaxDashCount()
+        {
+            return maxDashCount;
         }
     }
 }

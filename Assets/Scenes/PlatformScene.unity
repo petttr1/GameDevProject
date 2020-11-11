@@ -1196,29 +1196,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-      propertyPath: platformChoices.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-      propertyPath: platformChoices.Array.data[0]
-      value: 
-      objectReference: {fileID: 1032887539830800204, guid: be90abf55f1ceb94a91961f11af75285,
-        type: 3}
-    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-      propertyPath: platformChoices.Array.data[1]
-      value: 
-      objectReference: {fileID: 390583279833156744, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
-        type: 3}
-      propertyPath: platformChoices.Array.data[2]
-      value: 
-      objectReference: {fileID: 5392218167405230616, guid: 8c60c9b57b52b764ab4258a0b26f84f1,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994c1505d27eeb546aac2989009c2708, type: 3}
 --- !u!1 &936188014
@@ -2549,10 +2526,20 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 1753227821927465819, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
+    - target: {fileID: 1753227821972492513, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
         type: 3}
-      propertyPath: dashPower
-      value: 300
+      propertyPath: JumpForwardPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753227821972492513, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
+        type: 3}
+      propertyPath: m_GravityMultiplier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753227821972492513, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
+        type: 3}
+      propertyPath: InAirMovementImpact
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1753227821978768291, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
         type: 3}

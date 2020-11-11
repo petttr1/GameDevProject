@@ -15,11 +15,13 @@ namespace Platform
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
         private bool Dash;
         private bool IsDashing;
-
+        private int DashCount;
+        Animator m_Animator;
         private void Start()
         {
             m_Cam = Camera.main.transform;
             m_Character = GetComponent<ThirdPersonCharacter>();
+            m_Animator = GetComponent<Animator>();
         }
 
 
@@ -29,13 +31,24 @@ namespace Platform
             {
                 m_Jump = Input.GetButtonDown("Jump");
             }
-            if (!Dash)
+            // if the max dash cap is not reached, player can dash
+            if (DashCount < gameObject.GetComponent<PowerUps>().GetMaxDashCount())
             {
                 Dash = Input.GetMouseButtonDown(1);
+            }
+            if (Input.GetMouseButtonUp(1) && gameObject.GetComponent<PowerUps>().IsDashing())
+            {
+                gameObject.GetComponent<PowerUps>().InterruptDash();
+                Dash = !Dash;
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 RespawnPlayer();
+            }
+            // if the palyer is on the ground, reset Dash Count
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+            {
+                DashCount = 0;
             }
         }
 
@@ -51,10 +64,12 @@ namespace Platform
             m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
             m_Move = v*m_CamForward + h*m_Cam.right;
 
+            // && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
             if (Dash)
             {
                 gameObject.GetComponent<PowerUps>().Dash();
                 Dash = false;
+                DashCount++;
             }
 
             if (m_Move.magnitude > 1f) m_Move.Normalize();
@@ -70,6 +85,11 @@ namespace Platform
             var gameControl = GameObject.FindGameObjectWithTag("GameController");
             transform.position = gameControl.GetComponent<PlatformsSpawner>().RespawnPoint;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+
+        public void EndDash()
+        {
+            Dash = false;
         }
     }
 }
