@@ -34,12 +34,10 @@ namespace Platform
                     // restore the original velocity - we dont want the player to go flying into infinity and beyond
                     player_rigidbody.velocity = transform.TransformDirection(originalVelocity);
                     dash = false;
-                    gameObject.GetComponent<ThirdPersonUserControl>().EndDash();
                 }
                 else
                 {
                     // apply the dash power
-                    // player_rigidbody.AddForce(transform.forward * dashPower);
                     player_rigidbody.velocity = transform.forward.normalized * dashPower;
                 }
             }

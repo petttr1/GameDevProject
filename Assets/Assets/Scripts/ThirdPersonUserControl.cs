@@ -17,11 +17,13 @@ namespace Platform
         private bool IsDashing;
         private int DashCount;
         Animator m_Animator;
+        private int maxDashCount;
         private void Start()
         {
             m_Cam = Camera.main.transform;
             m_Character = GetComponent<ThirdPersonCharacter>();
             m_Animator = GetComponent<Animator>();
+            maxDashCount = gameObject.GetComponent<PowerUps>().GetMaxDashCount();
         }
 
 
@@ -32,14 +34,14 @@ namespace Platform
                 m_Jump = Input.GetButtonDown("Jump");
             }
             // if the max dash cap is not reached, player can dash
-            if (DashCount < gameObject.GetComponent<PowerUps>().GetMaxDashCount())
+            if (DashCount < maxDashCount && Input.GetMouseButtonDown(1))
             {
-                Dash = Input.GetMouseButtonDown(1);
+                Dash = true;
             }
             if (Input.GetMouseButtonUp(1) && gameObject.GetComponent<PowerUps>().IsDashing())
             {
                 gameObject.GetComponent<PowerUps>().InterruptDash();
-                Dash = !Dash;
+                Dash = false;
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -85,11 +87,6 @@ namespace Platform
             var gameControl = GameObject.FindGameObjectWithTag("GameController");
             transform.position = gameControl.GetComponent<PlatformsSpawner>().RespawnPoint;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-        }
-
-        public void EndDash()
-        {
-            Dash = false;
         }
     }
 }

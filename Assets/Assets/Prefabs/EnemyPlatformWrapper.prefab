@@ -252,7 +252,7 @@ MonoBehaviour:
   Damage: 10
   ShootingOrigin: {fileID: 8906743605370364701}
   ShootingRange: 20
-  AimTime: 1
+  AimTime: 3
   AimMat: {fileID: 2100000, guid: 0c78177e1da1665458dfa7f6d74da44b, type: 2}
   ShootMat: {fileID: 2100000, guid: 34c362ba90a755948817aa6b25e61872, type: 2}
 --- !u!1001 &810134266802549700

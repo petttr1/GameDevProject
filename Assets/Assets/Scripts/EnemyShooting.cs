@@ -39,8 +39,7 @@ namespace Platform
                 else
                 {
                     rend.SetPosition(0, transform.position);
-                    rend.SetPosition(1, transform.TransformPoint(transform.forward * ShootingRange));
-                    // Debug.Log(transform.gameObject.name + ", " + transform.TransformDirection(transform.forward * ShootingRange) + ", " + transform.forward);
+                    rend.SetPosition(1, transform.TransformPoint(transform.InverseTransformDirection(transform.forward) * ShootingRange));
                 }
             }
         }
@@ -70,7 +69,7 @@ namespace Platform
         {
             StartCoroutine(ShotVisuals());
             rend.SetPosition(0, transform.position);
-            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, ShootingRange))
             {
                 rend.SetPosition(1, hit.point);
                 GameObject objectHit = hit.transform.gameObject;
