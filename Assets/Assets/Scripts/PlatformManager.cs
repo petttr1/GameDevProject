@@ -47,6 +47,7 @@ namespace Platform
         public void SpawnPlatformOfType(GameObject platform, Vector3 center)
         {
             Vector3 next_pos = CalculateNextPosition(platform, center);
+            next_pos.y = Mathf.Clamp(next_pos.y, -10f, 10f);
             GameObject next_platform = Instantiate(platform, next_pos, Quaternion.identity);
             // rotate the platform by 0-90 degrees by the vertical axis 
             // (the paltfrom is square, other angles would have no visible effect)

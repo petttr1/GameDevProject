@@ -7,6 +7,7 @@ namespace Platform
     public class Lightness : MonoBehaviour
     {
         public float lightness = 100;
+        public float fadingRate = 5;
         public bool enemy;
         //whether to subtract lightness every tick
         public bool fading = false;
@@ -31,7 +32,7 @@ namespace Platform
             {
                 if (fading)
                 {
-                    lightness -= 0.1f;
+                    lightness -= Time.deltaTime * fadingRate;
                     lightness = Mathf.Clamp(lightness, 0.0f, 100.0f);
                 }
                 UpdateLightnessVisual();
