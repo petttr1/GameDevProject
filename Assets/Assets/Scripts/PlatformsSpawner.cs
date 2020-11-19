@@ -7,7 +7,7 @@ namespace Platform
     public class PlatformsSpawner : MonoBehaviour
     {
         public Vector3 RespawnPoint;
-        public GameObject player;
+        [SerializeField] public GameObject player;
         public int AmountSpawned = 5;
 
         public int MaxEnemyPlatforms = 5;
@@ -24,6 +24,7 @@ namespace Platform
         private int EnemyPlatforms;
         private int RewardPlatforms;
         private int PlatformsSpawned;
+        private GameObject[] platforms;
         // Start is called before the first frame update
         void Start()
         {
@@ -38,13 +39,14 @@ namespace Platform
 
         private void onPlayerLand(GameObject active_platform)
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             // if the platform was not visited yet
             if (active_platform.GetComponent<PlatformManager>().visited == false)
             {
                 // refill the players' lightness
                 player.GetComponent<Lightness>().RefillLightness(100);
                 //deal damage to all other platforms
-                GameObject[] platforms = GameObject.FindGameObjectsWithTag("Platform");
+                platforms = GameObject.FindGameObjectsWithTag("Platform");
 
                 foreach (GameObject platform in platforms)
                 {

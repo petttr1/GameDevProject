@@ -6,7 +6,6 @@ namespace Platform
 {
     public class PowerUpPickup : MonoBehaviour
     {
-        public int type;
         private float moveSpeed = 2f;
         private bool IsUp = false;
         private Vector3 startPosition;
@@ -39,7 +38,7 @@ namespace Platform
         private void OnTriggerEnter(Collider other)
         {
             GameObject player = other.gameObject;
-            player.GetComponent<PowerUps>().AddPowerUp(type);
+            player.GetComponent<Dash>().AddPowerUp();
             Destroy(gameObject);
         }
 

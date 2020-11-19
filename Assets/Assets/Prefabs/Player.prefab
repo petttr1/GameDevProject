@@ -1624,6 +1624,7 @@ GameObject:
   - component: {fileID: 1753227821972533445}
   - component: {fileID: 1753227821972492513}
   - component: {fileID: 1753227821927465819}
+  - component: {fileID: 9160810919234758840}
   - component: {fileID: 1753227821927465809}
   - component: {fileID: 1492946663}
   m_Layer: 8
@@ -1843,7 +1844,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf1af7c9afdcb84e83f7c3d21811d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashPower: 100
+--- !u!114 &9160810919234758840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753227821983849379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ff44b1bb39d844393f80ab3eac95a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashPower: 300
   maxDashCount: 3
 --- !u!114 &1753227821927465809
 MonoBehaviour:
@@ -1858,6 +1871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightness: 100
+  fadingRate: 5
   enemy: 0
   fading: 1
 --- !u!114 &1492946663
@@ -3038,7 +3052,7 @@ GameObject:
   - component: {fileID: 5726756060368544440}
   m_Layer: 0
   m_Name: Shooter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,23 +4,31 @@ using UnityEngine;
 
 namespace Platform
 {
-    public class PowerUps : MonoBehaviour
+    public class Dash : MonoBehaviour
     {
-        Rigidbody player_rigidbody;
-
-        public float dashPower;
+        public bool IsEnabled = true;
+        public float dashPower = 300;
         public int maxDashCount = 3;
+
+        private Rigidbody player_rigidbody;
 
         private float maxDashTime;
         private bool dash;
         private float currentDashTime;
         private Vector3 originalVelocity;
+
         // Start is called before the first frame update
         void Start()
         {
             player_rigidbody = gameObject.GetComponent<Rigidbody>();
+            enabled = IsEnabled;
             currentDashTime = 0;
             maxDashTime = 0.1f;
+        }
+
+        public void AddPowerUp()
+        {
+            enabled = true;
         }
 
         // Update is called once per frame
@@ -43,12 +51,7 @@ namespace Platform
             }
         }
 
-        public void AddPowerUp(int type) 
-        {
-            Debug.Log("PowerUp added: " + type);
-        }
-
-        public void Dash()
+        public void UsePowerUp()
         {
             currentDashTime = 0;
             Vector3 velo = player_rigidbody.velocity;
@@ -62,16 +65,6 @@ namespace Platform
             {
                 currentDashTime = maxDashTime;
             }
-        }
-
-        public void GravityBoots(Vector3 move)
-        {
-
-        }
-
-        public void DoubleJump(Vector3 move)
-        {
-
         }
 
         public bool IsDashing()

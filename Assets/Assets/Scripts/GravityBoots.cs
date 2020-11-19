@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Platform
 {
-    public class PlatformDespawner : MonoBehaviour
+    public class GravityBoots : MonoBehaviour
     {
-        public void Despawn()
+        void Awake()
         {
-            Destroy(gameObject);
+            enabled = false;
         }
     }
 }

@@ -23,34 +23,41 @@ namespace Platform
             m_Cam = Camera.main.transform;
             m_Character = GetComponent<ThirdPersonCharacter>();
             m_Animator = GetComponent<Animator>();
-            maxDashCount = gameObject.GetComponent<PowerUps>().GetMaxDashCount();
+            maxDashCount = gameObject.GetComponent<Dash>().GetMaxDashCount();
         }
 
 
         private void Update()
         {
-            if (!m_Jump)
+            if (!GamePauseControl.GamePaused)
             {
-                m_Jump = Input.GetButtonDown("Jump");
-            }
-            // if the max dash cap is not reached, player can dash
-            if (DashCount < maxDashCount && Input.GetMouseButtonDown(1))
-            {
-                Dash = true;
-            }
-            if (Input.GetMouseButtonUp(1) && gameObject.GetComponent<PowerUps>().IsDashing())
-            {
-                gameObject.GetComponent<PowerUps>().InterruptDash();
-                Dash = false;
-            }
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RespawnPlayer();
-            }
-            // if the palyer is on the ground, reset Dash Count
-            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
-            {
-                DashCount = 0;
+                if (!m_Jump)
+                {
+                    m_Jump = Input.GetButtonDown("Jump");
+                }
+                // if the Dash powerup was already acquired and max dash cap is not reached, player can dash
+                if (gameObject.GetComponent<Dash>().enabled
+                    && DashCount < maxDashCount
+                    && Input.GetMouseButtonDown(1))
+                {
+                    Dash = true;
+                }
+                if (gameObject.GetComponent<Dash>().enabled
+                    && Input.GetMouseButtonUp(1)
+                    && gameObject.GetComponent<Dash>().IsDashing())
+                {
+                    gameObject.GetComponent<Dash>().InterruptDash();
+                    Dash = false;
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    RespawnPlayer();
+                }
+                // if the palyer is on the ground, reset Dash Count
+                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+                {
+                    DashCount = 0;
+                }
             }
         }
 
@@ -69,7 +76,7 @@ namespace Platform
             // && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
             if (Dash)
             {
-                gameObject.GetComponent<PowerUps>().Dash();
+                gameObject.GetComponent<Dash>().UsePowerUp();
                 Dash = false;
                 DashCount++;
             }
@@ -77,7 +84,7 @@ namespace Platform
             if (m_Move.magnitude > 1f) m_Move.Normalize();
 
             // pass all parameters to the character control script
-            IsDashing = gameObject.GetComponent<PowerUps>().IsDashing();
+            IsDashing = gameObject.GetComponent<Dash>().IsDashing();
             m_Character.Move(m_Move, m_Jump, IsDashing);
             m_Jump = false;
         }

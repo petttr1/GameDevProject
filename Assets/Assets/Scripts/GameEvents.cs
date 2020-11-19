@@ -5,23 +5,26 @@ using UnityEngine;
 
 namespace Platform
 {
-    public class GameEvents : MonoBehaviour
+    public class GameEvents
     {
-        public static GameEvents current;
-
-        private void Awake()
+        private static GameEvents instance = null;
+        public static GameEvents current
         {
-            current = this;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameEvents();
+                }
+                return instance;
+            }
         }
 
         public event Action<GameObject> onPlayerPlatformLand;
 
         public void PlayerPlatformLand(GameObject platform)
         {
-            if (onPlayerPlatformLand != null)
-            {
-                onPlayerPlatformLand(platform);
-            }
+            onPlayerPlatformLand?.Invoke(platform);
         }
     }
 }
