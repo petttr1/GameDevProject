@@ -9,7 +9,7 @@ namespace Platform
         public float Damage;
         public Transform ShootingOrigin;
         public float ShootingRange = 20f;
-        public float AimTime;
+        public float AimTime = 3f;
 
         public Material AimMat;
         public Material ShootMat;
@@ -17,7 +17,7 @@ namespace Platform
         private float TimeTaken;
         private RaycastHit hit;
         private LineRenderer rend;
-        private WaitForSeconds ShootingDuration = new WaitForSeconds(.2f);
+        readonly private WaitForSeconds ShootingDuration = new WaitForSeconds(.2f);
         private bool TakingAim = false;
         // Start is called before the first frame update
         void Start()

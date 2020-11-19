@@ -123,8 +123,19 @@ namespace Platform
 			}
 			m_Rigidbody.AddForce(move * InAirMovementImpact);
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+			// handle falling out of the world here
+			if (CheckFallingOutOfTheWorld())
+            {
+				GameEvents.current.PlayerDeath();
+			}
 		}
 
+		bool CheckFallingOutOfTheWorld()
+        {
+			// platforms spawn only in the range <-10, 10>, so falling below this value is not wanted.
+			// we give the player some grace period in which to use OneUp.
+			return m_Rigidbody.position.y <= -15f;
+        }
 
 		void HandleGroundedMovement(bool jump)
 		{
@@ -171,21 +182,20 @@ namespace Platform
 
 		void CheckGroundStatus()
 		{
-			RaycastHit hitInfo;
-			// 0.1f is a small offset to start the ray from inside the character
-			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
-			{
-				m_IsGrounded = true;
-				m_GroundNormal = hitInfo.normal;
-				m_Animator.applyRootMotion = true;
-			}
-			else
-			{
-				m_IsGrounded = false;
-				m_GroundNormal = Vector3.up;
-				m_Animator.applyRootMotion = false;
-			}
-		}
+            // 0.1f is a small offset to start the ray from inside the character
+            // it is also good to note that the transform position in the sample assets is at the base of the character
+            if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out RaycastHit hitInfo, m_GroundCheckDistance))
+            {
+                m_IsGrounded = true;
+                m_GroundNormal = hitInfo.normal;
+                m_Animator.applyRootMotion = true;
+            }
+            else
+            {
+                m_IsGrounded = false;
+                m_GroundNormal = Vector3.up;
+                m_Animator.applyRootMotion = false;
+            }
+        }
 	}
 }

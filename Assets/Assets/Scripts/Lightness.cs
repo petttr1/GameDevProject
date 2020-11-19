@@ -28,7 +28,7 @@ namespace Platform
         // Update is called once per frame
         void Update()
         {
-            if (lightness >= 0)
+            if (lightness > 0)
             {
                 if (fading)
                 {
@@ -37,9 +37,16 @@ namespace Platform
                 }
                 UpdateLightnessVisual();
             }
-            else if (enemy)
+            else
             {
-                Destroy(gameObject);
+                if (enemy)
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    GameEvents.current.PlayerDeath();
+                }
             }
         }
 

@@ -18,13 +18,13 @@ namespace Platform
         {
             if (Input.GetButtonDown("Cancel"))
             {
-                GamePaused = GamePaused ? Resume() : Pause();
+                GamePaused = GamePaused ? Resume() : Pause(true);
             }
         }
 
-        private bool Pause()
+        private bool Pause(bool showMenu)
         {
-            MenuUI.SetActive(true);
+            if (showMenu) MenuUI.SetActive(true);
             AudioListener.pause = true;
             Time.timeScale = 0f;
             return !GamePaused;
@@ -41,6 +41,11 @@ namespace Platform
         public void DoResume()
         {
             GamePaused = Resume();
+        }
+
+        public void DoPause(bool showMenu)
+        {
+            GamePaused = Pause(showMenu);
         }
     }
 

@@ -21,10 +21,16 @@ namespace Platform
         }
 
         public event Action<GameObject> onPlayerPlatformLand;
+        public event Action onPlayerDeath;
 
         public void PlayerPlatformLand(GameObject platform)
         {
             onPlayerPlatformLand?.Invoke(platform);
+        }
+
+        public void PlayerDeath()
+        {
+            onPlayerDeath?.Invoke();
         }
     }
 }

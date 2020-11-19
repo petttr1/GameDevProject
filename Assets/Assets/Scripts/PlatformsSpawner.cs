@@ -7,7 +7,7 @@ namespace Platform
     public class PlatformsSpawner : MonoBehaviour
     {
         public Vector3 RespawnPoint;
-        [SerializeField] public GameObject player;
+        public GameObject player;
         public int AmountSpawned = 5;
 
         public int MaxEnemyPlatforms = 5;
@@ -31,10 +31,9 @@ namespace Platform
             GameEvents.current.onPlayerPlatformLand += onPlayerLand;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDestroy()
         {
-
+            GameEvents.current.onPlayerPlatformLand -= onPlayerLand;
         }
 
         private void onPlayerLand(GameObject active_platform)

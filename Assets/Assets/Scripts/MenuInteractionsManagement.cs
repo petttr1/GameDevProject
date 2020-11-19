@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
-    public class PauseMenuInteractionsManagement : MonoBehaviour
+    public class MenuInteractionsManagement : MonoBehaviour
     {
 
         public void Resume()
@@ -17,7 +17,6 @@ namespace Platform
             GetComponent<GamePauseControl>().DoResume();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
-
         public void MainMenu()
         {
             GetComponent<GamePauseControl>().DoResume();
