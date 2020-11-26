@@ -12,18 +12,22 @@ namespace Platform
 
         private Rigidbody player_rigidbody;
         private bool canUseBoots = false;
+        private Vector3 origVelo;
 
         void Start()
         {
             player_rigidbody = gameObject.GetComponent<Rigidbody>();
             enabled = IsEnabled;
-            GameEvents.current.onPlayerPlatformLand += PlayerLanded;
+            GameEvents.current.onPlayerJump += EnableBootsUsage;
+        }
+        private void OnDestroy()
+        {
+            GameEvents.current.onPlayerJump -= EnableBootsUsage;
         }
         public void AddPowerUp()
         {
             enabled = true;
         }
-
         private void Update()
         {
             // the gravity is applied when the player presses left shift,
@@ -32,19 +36,18 @@ namespace Platform
                 && canUseBoots
                 && Input.GetButtonDown("Fire3"))
             {
-                Debug.Log("Gravity");
-                player_rigidbody.AddForce(Vector3.down * addedGravityForce);
+                origVelo = player_rigidbody.velocity;
+                player_rigidbody.velocity = new Vector3(origVelo.x, -addedGravityForce, origVelo.z);
             }
-            if (Input.GetButtonUp("Fire3"))
+            if (Input.GetButtonUp("Fire3") && canUseBoots)
             {
-                Debug.Log("Stop Gravity");
                 canUseBoots = false;
+                player_rigidbody.velocity = origVelo;
             }
         }
 
-        private void PlayerLanded(GameObject p)
+        private void EnableBootsUsage(Vector3 v)
         {
-            Debug.Log("Gravity land");
             canUseBoots = true;
         } 
     }

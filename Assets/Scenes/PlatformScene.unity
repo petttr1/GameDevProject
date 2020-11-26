@@ -1450,28 +1450,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2282452243565070280, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
-        type: 3}
-      propertyPath: upPower
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8014393040415896785, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
-        type: 3}
-      propertyPath: addedGravityForce
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 9160810919234758840, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
-        type: 3}
-      propertyPath: dashPower
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 9160810919234758840, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
-        type: 3}
-      propertyPath: IsEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1753227821927465819, guid: 7e1501a1ee8ea9c439ef307e7bb414b5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e1501a1ee8ea9c439ef307e7bb414b5, type: 3}
 --- !u!4 &630918551 stripped
 Transform:
@@ -3292,20 +3271,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 486337922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1709632668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709632667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1533f77038e05cd419884b69ef30241d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_JumpPower: 20
-  JumpForwardPower: 1.5
 --- !u!4 &1709632678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1753227821983575591, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,

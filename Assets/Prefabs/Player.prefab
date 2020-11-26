@@ -1628,6 +1628,7 @@ GameObject:
   - component: {fileID: 8014393040415896785}
   - component: {fileID: 1753227821927465809}
   - component: {fileID: 1492946663}
+  - component: {fileID: 1709632668}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1844,7 +1845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsEnabled: 1
-  dashPower: 300
+  dashPower: 100
   maxDashCount: 3
 --- !u!114 &2282452243565070280
 MonoBehaviour:
@@ -1859,7 +1860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsEnabled: 1
-  doubleJumping: 0
+  forwardPower: 1.5
+  upPower: 20
 --- !u!114 &8014393040415896785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1872,6 +1874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5cf70896db114488f15b1804c1eefd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEnabled: 1
+  addedGravityForce: 30
 --- !u!114 &1753227821927465809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1903,6 +1907,20 @@ MonoBehaviour:
   cam: {fileID: 0}
   Damage: 50
   ShootiongOrigin: {fileID: 4715851172807053665}
+--- !u!114 &1709632668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753227821983849379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1533f77038e05cd419884b69ef30241d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_JumpPower: 20
+  JumpForwardPower: 1.5
 --- !u!1 &1753227821983850751
 GameObject:
   m_ObjectHideFlags: 0

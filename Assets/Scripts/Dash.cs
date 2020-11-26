@@ -29,6 +29,10 @@ namespace Platform
             maxDashTime = 0.1f;
             GameEvents.current.onPlayerPlatformLand += PlayerLanded;
         }
+        private void OnDestroy()
+        {
+            GameEvents.current.onPlayerPlatformLand -= PlayerLanded;
+        }
 
         public void AddPowerUp()
         {

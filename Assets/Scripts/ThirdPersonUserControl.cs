@@ -22,8 +22,10 @@ namespace Platform
             DashComponent = gameObject.GetComponent<Dash>();
             GameEvents.current.onPlayerJump += PlayerJumped;
         }
-
-
+        private void OnDestroy()
+        {
+            GameEvents.current.onPlayerJump -= PlayerJumped;
+        }
         private void Update()
         {
             if (!GamePauseControl.GamePaused)
@@ -34,8 +36,6 @@ namespace Platform
                 }
             }
         }
-
-
         // Fixed update is called in sync with physics
         private void FixedUpdate()
         {
@@ -61,7 +61,6 @@ namespace Platform
             transform.position = gameControl.GetComponent<PlatformsSpawner>().RespawnPoint;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
-
         private void PlayerJumped(Vector3 velo)
         {
             m_Jump = true;
