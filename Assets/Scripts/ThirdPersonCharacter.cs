@@ -13,8 +13,6 @@ namespace Platform
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float InAirMovementImpact = 1f;
-		[SerializeField] float m_JumpPower = 12f;
-		[SerializeField] float JumpForwardPower = 1.5f;
 		[Range(1f, 4f)][SerializeField] public float m_GravityMultiplier = 2f;
 		[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
@@ -29,21 +27,22 @@ namespace Platform
 		float m_TurnAmount;
 		float m_ForwardAmount;
 		Vector3 m_GroundNormal;
+		Jump JumpingComponent;
 
 
 		void Start()
 		{
 			m_Animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
-
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+
+			JumpingComponent = GetComponent<Jump>();
 		}
 
 
 		public void Move(Vector3 move, bool jump, bool dash)
 		{
-
 			// convert the world relative moveInput vector into a local-relative
 			// turn amount and forward amount required to head in the desired
 			// direction.
@@ -63,15 +62,14 @@ namespace Platform
 			// control and velocity handling is different when grounded and airborne:
 			if (m_IsGrounded)
 			{
-				// basically just handles the jump?
+				// basically just handles the jump
 				HandleGroundedMovement(jump);
 			}
 			else
 			{
-				// adds extra gravity to the fall = simualtion of free fall?
-				HandleAirborneMovement(move, dash);
+				// adds extra gravity to the fall = simualtion of free fall
+				HandleAirborneMovement(move, dash, jump);
 			}
-
             // send input and other state parameters to the animator
             UpdateAnimator(move);
 		}
@@ -114,12 +112,16 @@ namespace Platform
 		}
 
 
-		void HandleAirborneMovement(Vector3 move, bool dash)
+		void HandleAirborneMovement(Vector3 move, bool dash, bool jump)
 		{
 			// HEAVILY MODIFIED. CONTRARY TO THE ORIGINAL FUNCTION, WE WANT TO ALLOW IN AIR PLAYER MOVEMENT
 			if (!dash) {
 				Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
 				m_Rigidbody.AddForce(extraGravityForce);
+			}
+			if (jump)
+            {
+				JumpingComponent.DoJump(m_IsGrounded, m_Animator, m_GroundCheckDistance);
 			}
 			m_Rigidbody.AddForce(move * InAirMovementImpact);
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
@@ -139,22 +141,11 @@ namespace Platform
 
 		void HandleGroundedMovement(bool jump)
 		{
-			// check whether conditions are right to allow a jump:
-			// JUMPING TECHNIQUE CHANGED
-			if (jump && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+			if (jump)
 			{
 				// jump!
-				CustomJump();
+				JumpingComponent.DoJump(m_IsGrounded, m_Animator, m_GroundCheckDistance);
 			}
-		}
-
-		void CustomJump()
-        {
-			// we want to set the jump to be a bit longer and not so high
-			m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x * JumpForwardPower, m_JumpPower, m_Rigidbody.velocity.z * JumpForwardPower);
-			m_IsGrounded = false;
-			m_Animator.applyRootMotion = false;
-			m_GroundCheckDistance = 0.1f;
 		}
 
 		void ApplyExtraTurnRotation()
@@ -163,7 +154,6 @@ namespace Platform
 			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
 			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
-
 
 		public void OnAnimatorMove()
 		{
@@ -179,7 +169,6 @@ namespace Platform
 			}
 		}
 
-
 		void CheckGroundStatus()
 		{
             // 0.1f is a small offset to start the ray from inside the character
@@ -189,6 +178,7 @@ namespace Platform
                 m_IsGrounded = true;
                 m_GroundNormal = hitInfo.normal;
                 m_Animator.applyRootMotion = true;
+				JumpingComponent.JumpEnded();
             }
             else
             {

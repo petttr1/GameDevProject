@@ -17,13 +17,13 @@ namespace Platform
         private bool IsDashing;
         private int DashCount;
         Animator m_Animator;
-        private int maxDashCount;
+        private Dash DashComponent;
         private void Start()
         {
             m_Cam = Camera.main.transform;
             m_Character = GetComponent<ThirdPersonCharacter>();
             m_Animator = GetComponent<Animator>();
-            maxDashCount = gameObject.GetComponent<Dash>().GetMaxDashCount();
+            DashComponent = gameObject.GetComponent<Dash>();
         }
 
 
@@ -36,17 +36,17 @@ namespace Platform
                     m_Jump = Input.GetButtonDown("Jump");
                 }
                 // if the Dash powerup was already acquired and max dash cap is not reached, player can dash
-                if (gameObject.GetComponent<Dash>().enabled
-                    && DashCount < maxDashCount
+                if (DashComponent.enabled
+                    && DashCount < DashComponent.maxDashCount
                     && Input.GetMouseButtonDown(1))
                 {
                     Dash = true;
                 }
-                if (gameObject.GetComponent<Dash>().enabled
+                if (DashComponent.enabled
                     && Input.GetMouseButtonUp(1)
-                    && gameObject.GetComponent<Dash>().IsDashing())
+                    && DashComponent.IsDashing())
                 {
-                    gameObject.GetComponent<Dash>().InterruptDash();
+                    DashComponent.InterruptDash();
                     Dash = false;
                 }
                 if (Input.GetKeyDown(KeyCode.R))
@@ -76,7 +76,7 @@ namespace Platform
             // && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
             if (Dash)
             {
-                gameObject.GetComponent<Dash>().UsePowerUp();
+                DashComponent.UsePowerUp();
                 Dash = false;
                 DashCount++;
             }
@@ -84,7 +84,7 @@ namespace Platform
             if (m_Move.magnitude > 1f) m_Move.Normalize();
 
             // pass all parameters to the character control script
-            IsDashing = gameObject.GetComponent<Dash>().IsDashing();
+            IsDashing = DashComponent.IsDashing();
             m_Character.Move(m_Move, m_Jump, IsDashing);
             m_Jump = false;
         }
