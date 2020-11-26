@@ -32,7 +32,7 @@ namespace Platform
                 {
                     rend.SetPosition(1, hit.point);
                     GameObject objectHit = hit.transform.gameObject;
-                    if (objectHit.tag =="Enemy")
+                    if (objectHit.CompareTag("Enemy"))
                     {
                         objectHit.GetComponentInChildren<Lightness>().DealDamage(Damage);
                     }

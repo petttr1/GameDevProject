@@ -17,6 +17,7 @@ namespace Platform
         private bool dash;
         private float currentDashTime;
         private Vector3 originalVelocity;
+        private int dashCount;
 
         // Start is called before the first frame update
         void Start()
@@ -24,7 +25,9 @@ namespace Platform
             player_rigidbody = gameObject.GetComponent<Rigidbody>();
             enabled = IsEnabled;
             currentDashTime = 0;
+            dashCount = 0;
             maxDashTime = 0.1f;
+            GameEvents.current.onPlayerPlatformLand += PlayerLanded;
         }
 
         public void AddPowerUp()
@@ -35,6 +38,15 @@ namespace Platform
         // Update is called once per frame
         void Update()
         {
+            if (Input.GetMouseButtonDown(1) && dashCount < maxDashCount)
+            {
+                dashCount++;
+                DoDash();
+            }
+            if (Input.GetMouseButtonUp(1) && dash)
+            {
+                InterruptDash();
+            }
             if (dash)
             {
                 currentDashTime += Time.deltaTime;
@@ -52,7 +64,7 @@ namespace Platform
             }
         }
 
-        public void UsePowerUp()
+        public void DoDash()
         {
             currentDashTime = 0;
             Vector3 velo = player_rigidbody.velocity;
@@ -76,6 +88,12 @@ namespace Platform
         public int GetMaxDashCount()
         {
             return maxDashCount;
+        }
+
+        private void PlayerLanded(GameObject p)
+        {
+            dash = false;
+            dashCount = 0;
         }
     }
 }

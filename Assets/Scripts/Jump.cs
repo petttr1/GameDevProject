@@ -14,16 +14,22 @@ namespace Platform
         private Rigidbody j_Rigidbody;
         private Vector3 startingVelocity;
         private bool jumping = false;
-        private DoubleJump DoubleJumpComponent;
         // Start is called before the first frame update
         void Start()
         {
             j_Rigidbody = GetComponent<Rigidbody>();
-            DoubleJumpComponent = GetComponent<DoubleJump>();
             GameEvents.current.onPlayerPlatformLand += JumpEnded;
         }
 
-        public void DoJump(ref bool grounded, ref Animator anim, ref float GCD)
+        private void Update()
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                DoJump();
+            }
+        }
+
+        private void DoJump()
         {
             // if the jump is called when the player is on the ground
             if (!jumping)
@@ -36,15 +42,7 @@ namespace Platform
                 // add velocity to the rigidbody - the actual jump
                 j_Rigidbody.velocity = new Vector3(j_Rigidbody.velocity.x * JumpForwardPower, m_JumpPower, j_Rigidbody.velocity.z * JumpForwardPower);
                 jumping = true;
-                grounded = false;
-                anim.applyRootMotion = false;
-                GCD = 0.1f;
             }
-/*            // else we are double jumping
-            else if (!DoubleJumpComponent.doubleJumping)
-            {
-                DoubleJumpComponent.DoDoubleJump(startingVelocity, JumpForwardPower, m_JumpPower);
-            }*/
         }
         private void JumpEnded(GameObject player)
         {

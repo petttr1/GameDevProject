@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-// !!! THIS CODE IS FROM STANDARD UNITY ASSETS. CUSTOM FUNCTIONS WILL BE MARKED BY A COMMENT !!! //
-// MOST OF THE TIME, ALREADY EXISTING FUNCTIONS HAVE BEEN UPDATED OR MODIFIED //
+// THIS CLASS STARTED AS STANDARD ASSET BUT HAS NOTHING IN COMMON NOW. //
+// EVERYTHING WAS CHANGED. //
 namespace Platform
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
@@ -13,17 +13,14 @@ namespace Platform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
         private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
-        private bool Dash;
         private bool IsDashing;
-        private int DashCount;
-        Animator m_Animator;
         private Dash DashComponent;
         private void Start()
         {
             m_Cam = Camera.main.transform;
             m_Character = GetComponent<ThirdPersonCharacter>();
-            m_Animator = GetComponent<Animator>();
             DashComponent = gameObject.GetComponent<Dash>();
+            GameEvents.current.onPlayerJump += PlayerJumped;
         }
 
 
@@ -31,32 +28,9 @@ namespace Platform
         {
             if (!GamePauseControl.GamePaused)
             {
-                if (!m_Jump)
-                {
-                    m_Jump = Input.GetButtonDown("Jump");
-                }
-                // if the Dash powerup was already acquired and max dash cap is not reached, player can dash
-                if (DashComponent.enabled
-                    && DashCount < DashComponent.maxDashCount
-                    && Input.GetMouseButtonDown(1))
-                {
-                    Dash = true;
-                }
-                if (DashComponent.enabled
-                    && Input.GetMouseButtonUp(1)
-                    && DashComponent.IsDashing())
-                {
-                    DashComponent.InterruptDash();
-                    Dash = false;
-                }
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     RespawnPlayer();
-                }
-                // if the palyer is on the ground, reset Dash Count
-                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
-                {
-                    DashCount = 0;
                 }
             }
         }
@@ -73,14 +47,6 @@ namespace Platform
             m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
             m_Move = v*m_CamForward + h*m_Cam.right;
 
-            // && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded")
-            if (Dash)
-            {
-                DashComponent.UsePowerUp();
-                Dash = false;
-                DashCount++;
-            }
-
             if (m_Move.magnitude > 1f) m_Move.Normalize();
 
             // pass all parameters to the character control script
@@ -94,6 +60,11 @@ namespace Platform
             var gameControl = GameObject.FindGameObjectWithTag("GameController");
             transform.position = gameControl.GetComponent<PlatformsSpawner>().RespawnPoint;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+
+        private void PlayerJumped(Vector3 velo)
+        {
+            m_Jump = true;
         }
     }
 }

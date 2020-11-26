@@ -1,7 +1,8 @@
 using UnityEngine;
 
-// !!! THIS CODE IS FROM STANDARD UNITY ASSETS. CUSTOM FUNCTIONS WILL BE MARKED BY A COMMENT !!!	//
+// !!! THIS CODE IS FROM STANDARD UNITY ASSETS.														//
 // MOST OF THE TIME, ALREADY EXISTING FUNCTIONS HAVE OFTEN BEEN UPDATED OR MODIFIED					//
+// ALL OF THE ORIGINAL CODE IS MARKED AND IS IN THE END OF THE FILE
 // I AM USING THIS CODE MOSTLY FOR THE ANIMATOR														//
 namespace Platform
 {
@@ -14,7 +15,7 @@ namespace Platform
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;
 		[SerializeField] float InAirMovementImpact = 1f;
-		[Range(1f, 4f)][SerializeField] public float m_GravityMultiplier = 2f;
+		[Range(1f, 4f)] public float m_GravityMultiplier = 2f;
 		[SerializeField] float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
@@ -28,20 +29,43 @@ namespace Platform
 		float m_TurnAmount;
 		float m_ForwardAmount;
 		Vector3 m_GroundNormal;
-		Jump JumpingComponent;
 
-
-		void Start()
+		void HandleAirborneMovement(Vector3 move, bool dash)
 		{
-			m_Animator = GetComponent<Animator>();
-			m_Rigidbody = GetComponent<Rigidbody>();
-			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-			m_OrigGroundCheckDistance = m_GroundCheckDistance;
-
-			JumpingComponent = GetComponent<Jump>();
+			// HEAVILY MODIFIED. CONTRARY TO THE ORIGINAL FUNCTION, WE WANT TO ALLOW IN AIR PLAYER MOVEMENT
+			if (!dash) {
+				Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
+				m_Rigidbody.AddForce(extraGravityForce);
+			}
+			m_Rigidbody.AddForce(move * InAirMovementImpact);
+			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
+			// handle falling out of the world here
+			if (CheckFallingOutOfTheWorld())
+            {
+				GameEvents.current.PlayerDeath();
+			}
 		}
 
+		bool CheckFallingOutOfTheWorld()
+        {
+			// platforms spawn only in the range <-10, 10>, so falling below this value is not wanted.
+			// we give the player some grace period in which to use OneUp.
+			return m_Rigidbody.position.y <= -15f;
+        }
 
+		// modified
+		void HandleGroundedMovement(bool jump)
+		{
+			if (jump)
+			{
+				m_IsGrounded = false;
+				m_Animator.applyRootMotion = false;
+				m_GroundCheckDistance = 0.1f;
+			}
+		}
+
+		//***************CODE BELOW IS FROM STANDARD ASSETS AND NOT MODIFIED***************//
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
 		public void Move(Vector3 move, bool jump, bool dash)
 		{
 			// convert the world relative moveInput vector into a local-relative
@@ -69,13 +93,27 @@ namespace Platform
 			else
 			{
 				// adds extra gravity to the fall = simualtion of free fall
-				HandleAirborneMovement(move, dash, jump);
+				HandleAirborneMovement(move, dash);
 			}
-            // send input and other state parameters to the animator
-            UpdateAnimator(move);
+			// send input and other state parameters to the animator
+			UpdateAnimator(move);
 		}
-
-
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
+		void Start()
+		{
+			m_Animator = GetComponent<Animator>();
+			m_Rigidbody = GetComponent<Rigidbody>();
+			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+			m_OrigGroundCheckDistance = m_GroundCheckDistance;
+		}
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
+		void ApplyExtraTurnRotation()
+		{
+			// help the character turn faster (this is in addition to root rotation in the animation)
+			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
+			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+		}
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
 		void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
@@ -111,51 +149,7 @@ namespace Platform
 				m_Animator.speed = 1;
 			}
 		}
-
-
-		void HandleAirborneMovement(Vector3 move, bool dash, bool jump)
-		{
-			// HEAVILY MODIFIED. CONTRARY TO THE ORIGINAL FUNCTION, WE WANT TO ALLOW IN AIR PLAYER MOVEMENT
-			if (!dash) {
-				Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
-				m_Rigidbody.AddForce(extraGravityForce);
-			}
-			if (jump)
-            {
-				JumpingComponent.DoJump(ref m_IsGrounded, ref m_Animator, ref m_GroundCheckDistance);
-			}
-			m_Rigidbody.AddForce(move * InAirMovementImpact);
-			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
-			// handle falling out of the world here
-			if (CheckFallingOutOfTheWorld())
-            {
-				GameEvents.current.PlayerDeath();
-			}
-		}
-
-		bool CheckFallingOutOfTheWorld()
-        {
-			// platforms spawn only in the range <-10, 10>, so falling below this value is not wanted.
-			// we give the player some grace period in which to use OneUp.
-			return m_Rigidbody.position.y <= -15f;
-        }
-
-		void HandleGroundedMovement(bool jump)
-		{
-			if (jump)
-			{
-				// jump!
-				JumpingComponent.DoJump(ref m_IsGrounded, ref m_Animator, ref m_GroundCheckDistance);
-			}
-		}
-
-		void ApplyExtraTurnRotation()
-		{
-			// help the character turn faster (this is in addition to root rotation in the animation)
-			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
-		}
-
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
 		public void OnAnimatorMove()
 		{
 			// we implement this function to override the default root motion.
@@ -169,7 +163,7 @@ namespace Platform
 				m_Rigidbody.velocity = v;
 			}
 		}
-
+		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
 		void CheckGroundStatus()
 		{
             // 0.1f is a small offset to start the ray from inside the character
