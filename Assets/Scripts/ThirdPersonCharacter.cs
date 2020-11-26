@@ -8,6 +8,7 @@ namespace Platform
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(Jump))]
 	public class ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
@@ -121,7 +122,7 @@ namespace Platform
 			}
 			if (jump)
             {
-				JumpingComponent.DoJump(m_IsGrounded, m_Animator, m_GroundCheckDistance);
+				JumpingComponent.DoJump(ref m_IsGrounded, ref m_Animator, ref m_GroundCheckDistance);
 			}
 			m_Rigidbody.AddForce(move * InAirMovementImpact);
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
@@ -144,7 +145,7 @@ namespace Platform
 			if (jump)
 			{
 				// jump!
-				JumpingComponent.DoJump(m_IsGrounded, m_Animator, m_GroundCheckDistance);
+				JumpingComponent.DoJump(ref m_IsGrounded, ref m_Animator, ref m_GroundCheckDistance);
 			}
 		}
 
@@ -178,7 +179,6 @@ namespace Platform
                 m_IsGrounded = true;
                 m_GroundNormal = hitInfo.normal;
                 m_Animator.applyRootMotion = true;
-				JumpingComponent.JumpEnded();
             }
             else
             {

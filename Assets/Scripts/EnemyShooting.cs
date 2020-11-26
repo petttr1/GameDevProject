@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(LineRenderer))]
     public class EnemyShooting : MonoBehaviour
     {
         public float Damage;

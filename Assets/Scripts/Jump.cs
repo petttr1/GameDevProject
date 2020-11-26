@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(DoubleJump))]
     public class Jump : MonoBehaviour
     {
         [SerializeField] float m_JumpPower = 12f;
@@ -18,9 +20,10 @@ namespace Platform
         {
             j_Rigidbody = GetComponent<Rigidbody>();
             DoubleJumpComponent = GetComponent<DoubleJump>();
+            GameEvents.current.onPlayerPlatformLand += JumpEnded;
         }
 
-        public void DoJump(bool grounded, Animator anim, float GCD)
+        public void DoJump(ref bool grounded, ref Animator anim, ref float GCD)
         {
             // if the jump is called when the player is on the ground
             if (!jumping)
@@ -29,6 +32,7 @@ namespace Platform
                 // we use this as a starting point of the second jump (if double jumping)
                 // in order to avoid multiplying the velocities and floying too far
                 startingVelocity = j_Rigidbody.velocity;
+                GameEvents.current.PlayerJump(startingVelocity);
                 // add velocity to the rigidbody - the actual jump
                 j_Rigidbody.velocity = new Vector3(j_Rigidbody.velocity.x * JumpForwardPower, m_JumpPower, j_Rigidbody.velocity.z * JumpForwardPower);
                 jumping = true;
@@ -36,17 +40,15 @@ namespace Platform
                 anim.applyRootMotion = false;
                 GCD = 0.1f;
             }
-            // else we are double jumping
+/*            // else we are double jumping
             else if (!DoubleJumpComponent.doubleJumping)
             {
                 DoubleJumpComponent.DoDoubleJump(startingVelocity, JumpForwardPower, m_JumpPower);
-            }
+            }*/
         }
-
-        public void JumpEnded()
+        private void JumpEnded(GameObject player)
         {
             jumping = false;
-            DoubleJumpComponent.doubleJumping = false;
         }
     }
 }

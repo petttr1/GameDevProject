@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Dash : MonoBehaviour
     {
         public bool IsEnabled = true;
@@ -40,7 +41,7 @@ namespace Platform
                 if (currentDashTime >= maxDashTime)
                 {
                     // restore the original velocity - we dont want the player to go flying into infinity and beyond
-                    player_rigidbody.velocity = transform.TransformDirection(originalVelocity);
+                    player_rigidbody.velocity = transform.TransformDirection(transform.InverseTransformDirection(transform.forward) * originalVelocity.magnitude);
                     dash = false;
                 }
                 else
