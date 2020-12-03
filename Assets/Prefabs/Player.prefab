@@ -3081,7 +3081,6 @@ GameObject:
   - component: {fileID: 8219794006084970712}
   - component: {fileID: 8231095935752986651}
   - component: {fileID: 6078495068854503412}
-  - component: {fileID: 5726756060368544440}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -3164,17 +3163,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5726756060368544440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4181339550494636593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa9abd5cb4b38c84bac357a99e81c946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 1
-  ShooterRadius: 0.5

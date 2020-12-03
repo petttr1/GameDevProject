@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightness: 100
+  fadingRate: 5
   enemy: 1
   fading: 0
 --- !u!120 &1447274458489012422

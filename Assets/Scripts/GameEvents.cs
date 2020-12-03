@@ -23,6 +23,8 @@ namespace Platform
         public event Action<GameObject> onPlayerPlatformLand;
         public event Action<Vector3> onPlayerJump;
         public event Action onPlayerDeath;
+        public event Action<Transform> onNewStoryPlatform;
+        public event Action<int> onAddScore;
 
         public void PlayerPlatformLand(GameObject platform)
         {
@@ -35,6 +37,16 @@ namespace Platform
         public void PlayerDeath()
         {
             onPlayerDeath?.Invoke();
+        }
+
+        public void NewStoryPlatform(Transform newPlatform)
+        {
+            onNewStoryPlatform?.Invoke(newPlatform);
+        }
+
+        public void AddPLayerScore(int score)
+        {
+            onAddScore?.Invoke(score);
         }
     }
 }

@@ -81,7 +81,7 @@ namespace Platform
             }
             else
             {
-                rend.SetPosition(1, transform.forward * ShootingRange);
+                rend.SetPosition(1, transform.TransformPoint(transform.InverseTransformDirection(transform.forward) * ShootingRange));
             }
             TimeTaken = 0f;
         }

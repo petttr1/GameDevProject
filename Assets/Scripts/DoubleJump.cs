@@ -30,9 +30,8 @@ namespace Platform
 
         private void Update()
         {
-            if (Input.GetButtonDown("Jump") && enabled && canDoubleJump)
+            if (!GamePauseControl.GamePaused && Input.GetButtonDown("Jump") && enabled && canDoubleJump)
             {
-                Debug.Log($"Double jump, {canDoubleJump}");
                 DoDoubleJump();
             }
         }
@@ -44,7 +43,6 @@ namespace Platform
         }
         private void FirstJumpStarted(Vector3 velo)
         {
-            Debug.Log($"First jump, {canDoubleJump}");
             originalVelocity = velo;
             canDoubleJump = true;
         }

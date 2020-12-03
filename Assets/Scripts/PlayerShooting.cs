@@ -8,10 +8,10 @@ namespace Platform
     {
         public Camera cam;
         public float Damage;
+        public Transform ShootiongOrigin;
         private Vector3 ShootingPoint;
         RaycastHit hit;
         LineRenderer rend;
-        public Transform ShootiongOrigin;
         private WaitForSeconds ShootingDuration = new WaitForSeconds(.1f);
         // Start is called before the first frame update
         void Start()
@@ -23,7 +23,7 @@ namespace Platform
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (!GamePauseControl.GamePaused && Input.GetButtonDown("Fire1"))
             {
                 ShootingPoint = cam.ViewportToWorldPoint(new Vector3(.5f, .5f, 0));
                 StartCoroutine(ShotVisuals());

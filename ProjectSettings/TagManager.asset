@@ -9,6 +9,7 @@ TagManager:
   - Reward
   - PauseMenu
   - DeathMenu
+  - Story
   layers:
   - Default
   - TransparentFX

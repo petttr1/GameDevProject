@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 726397786111846807}
   - component: {fileID: 7473549987289460023}
   - component: {fileID: 7663123490451042199}
+  - component: {fileID: 3968106485631411201}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Reward
@@ -120,7 +121,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ee9fd288c90b84ab506440e3e6b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+--- !u!114 &3968106485631411201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169788612991668030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f094eb92af79e8b42a6a1d19c82f55ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5746206881642264208
 PrefabInstance:
   m_ObjectHideFlags: 0

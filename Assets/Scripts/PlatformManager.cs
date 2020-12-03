@@ -7,15 +7,13 @@ namespace Platform
     public class PlatformManager : MonoBehaviour
     {
         public int hitPoints = 5;
-
+        public bool Despawning = true;
         //radii of platform spawning zones
         public float MinRadius;
         public float MaxRadius;
         public bool visited = false;
-        public GameObject[] platformChoices;
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
-        // Start is called before the first frame update
         void Start()
         {
             propBlock = new MaterialPropertyBlock();
@@ -44,7 +42,7 @@ namespace Platform
             }
         }
 
-        public void SpawnPlatformOfType(GameObject platform, Vector3 center)
+        public GameObject SpawnPlatformOfType(GameObject platform, Vector3 center)
         {
             Vector3 next_pos = CalculateNextPosition(platform, center);
             next_pos.y = Mathf.Clamp(next_pos.y, -10f, 10f);
@@ -58,8 +56,7 @@ namespace Platform
             float roll = Random.Range(-5f, 5f);
             // rotate the newly spawned platform
             next_platform.transform.eulerAngles = new Vector3(roll, yaw, pitch);
-            // pass along the original platfom choices
-            next_platform.GetComponentInChildren<PlatformManager>().platformChoices = platformChoices;
+            return next_platform;
         }
 
         Vector3 CalculateNextPosition(GameObject next_platform, Vector3 center)
@@ -90,7 +87,8 @@ namespace Platform
         public void DealDamage()
         {
             // if any other platform was visited, deal 1 damage to all other paltforms
-            hitPoints--;
+            if (Despawning)
+                hitPoints--;
         }
     }
 }

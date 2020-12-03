@@ -14,7 +14,6 @@ namespace Platform
         private Rigidbody j_Rigidbody;
         private Vector3 startingVelocity;
         private bool jumping = false;
-        private bool canJump = true;
         // Start is called before the first frame update
         void Start()
         {
@@ -29,11 +28,11 @@ namespace Platform
 
         private void Update()
         {
-            if (Input.GetButtonDown("Jump") && !jumping)
+            if (!GamePauseControl.GamePaused && Input.GetButtonDown("Jump") && !jumping)
             {
                 DoJump();
             }
-            if (Input.GetButtonUp("Jump") && !jumping)
+            if (!GamePauseControl.GamePaused && Input.GetButtonUp("Jump") && !jumping)
             {
                 GameEvents.current.PlayerJump(startingVelocity);
                 jumping = true;
