@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3598453005290669042}
   - component: {fileID: 3031913098963503930}
   - component: {fileID: 6497491872677649622}
+  - component: {fileID: 762438461269731997}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
@@ -134,5 +135,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 5
+  Despawning: 1
+  MinRadius: 0
+  MaxRadius: 0
   visited: 0
-  platformChoices: []
+--- !u!114 &762438461269731997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179082296214029895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 10
+  ActionToAddScore:
+    m_PersistentCalls:
+      m_Calls: []

@@ -343,7 +343,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115677952}
-  m_LocalRotation: {x: -0.033925448, y: -0.22600111, z: 0.007875133, w: -0.9735043}
+  m_LocalRotation: {x: -0.03395516, y: -0.22365206, z: 0.0077957553, w: -0.9740463}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -757,7 +757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188408174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3278975, y: 5.92, z: -9.698129}
+  m_LocalPosition: {x: -4.280229, y: 5.92, z: -9.719261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 808083217}
@@ -1520,6 +1520,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2902932333003524654, guid: 7e1501a1ee8ea9c439ef307e7bb414b5,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5726756060368544440, guid: 7e1501a1ee8ea9c439ef307e7bb414b5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7e1501a1ee8ea9c439ef307e7bb414b5, type: 3}
@@ -1817,7 +1822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791094571}
-  m_LocalRotation: {x: -0.0060292156, y: -0.22613399, z: 0.001399609, w: -0.97407657}
+  m_LocalRotation: {x: -0.0060434025, y: -0.22378364, z: 0.0013875464, w: -0.97461915}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1891,7 +1896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808083215}
-  m_LocalRotation: {x: -0.06197878, y: -0.22568008, z: 0.014388552, w: -0.9721215}
+  m_LocalRotation: {x: -0.062024098, y: -0.22333433, z: 0.014241483, w: -0.9726624}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2105,8 +2110,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.033925284, y: 0.22600116, z: -0.007875829, w: 0.97350425}
-  m_LocalPosition: {x: -4.3278975, y: 5.92, z: -9.698129}
+  m_LocalRotation: {x: 0.033954997, y: 0.22365208, z: -0.007796454, w: 0.97404623}
+  m_LocalPosition: {x: -4.280229, y: 5.92, z: -9.719261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2601,7 +2606,7 @@ MonoBehaviour:
   AmountSpawned: 5
   MaxEnemyPlatforms: 5
   MaxRewardPlatforms: 1
-  RewardPlatformProba: 0.01
+  RewardPlatformProba: 0.1
   EnemyPlatformProba: 0.3
   EnemyPlatform: {fileID: 1032887539830800204, guid: be90abf55f1ceb94a91961f11af75285,
     type: 3}

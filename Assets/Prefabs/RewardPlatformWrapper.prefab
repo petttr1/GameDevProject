@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 4803023914039665678}
   - component: {fileID: 726397786111846807}
   - component: {fileID: 7473549987289460023}
-  - component: {fileID: 7663123490451042199}
+  - component: {fileID: 509953465017222112}
   - component: {fileID: 3968106485631411201}
+  - component: {fileID: 2499731493531151477}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Reward
@@ -109,7 +110,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7663123490451042199
+--- !u!114 &509953465017222112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,6 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f094eb92af79e8b42a6a1d19c82f55ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2499731493531151477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169788612991668030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 500
 --- !u!1001 &5746206881642264208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: MaxRadius
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144144013454891633, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
+      propertyPath: hitPoints
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 994c1505d27eeb546aac2989009c2708, type: 3}

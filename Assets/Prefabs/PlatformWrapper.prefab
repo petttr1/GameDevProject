@@ -186,7 +186,12 @@ PrefabInstance:
     - target: {fileID: 6497491872677649622, guid: e0f7d058e6281014292743f6f6854c01,
         type: 3}
       propertyPath: MaxRadius
-      value: 70
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497491872677649622, guid: e0f7d058e6281014292743f6f6854c01,
+        type: 3}
+      propertyPath: MinRadius
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0f7d058e6281014292743f6f6854c01, type: 3}

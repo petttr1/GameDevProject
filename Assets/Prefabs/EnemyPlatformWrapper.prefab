@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3494859760206729222}
   - component: {fileID: 1447274458489012422}
   - component: {fileID: 1615503394006895414}
+  - component: {fileID: 3667607694875515037}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Enemy
@@ -256,6 +257,33 @@ MonoBehaviour:
   AimTime: 3
   AimMat: {fileID: 2100000, guid: 0c78177e1da1665458dfa7f6d74da44b, type: 2}
   ShootMat: {fileID: 2100000, guid: 34c362ba90a755948817aa6b25e61872, type: 2}
+--- !u!114 &3667607694875515037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102862707652800938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 100
+  ActionToAddScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 102862707652800938}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &810134266802549700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -327,6 +355,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430479283105950778, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
+      propertyPath: ActionToAddScore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3494859760206729222}
+    - target: {fileID: 2430479283105950778, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
+      propertyPath: ActionToAddScore.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430479283105950778, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
+      propertyPath: ActionToAddScore.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430479283105950778, guid: 994c1505d27eeb546aac2989009c2708,
+        type: 3}
+      propertyPath: ActionToAddScore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4283632033388822766, guid: 994c1505d27eeb546aac2989009c2708,
         type: 3}

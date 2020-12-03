@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Platform
 {
@@ -10,7 +11,7 @@ namespace Platform
         // Start is called before the first frame update
         public void AddScoreToPlayer()
         {
-            GameEvents.current.AddPLayerScore(Amount);
+            GameEvents.current.AddPlayerScore(Amount);
         }
     }
 }

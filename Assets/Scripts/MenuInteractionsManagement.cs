@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
+    [RequireComponent(typeof(GamePauseControl))]
     public class MenuInteractionsManagement : MonoBehaviour
     {
-
         public void Resume()
         {
             GetComponent<GamePauseControl>().DoResume();

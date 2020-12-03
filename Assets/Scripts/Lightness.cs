@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(ScoreAdding))]
     public class Lightness : MonoBehaviour
     {
         public float lightness = 100;
@@ -41,7 +42,7 @@ namespace Platform
             {
                 if (enemy)
                 {
-                    Destroy(gameObject);
+                    EnemyDeath(gameObject);
                 }
                 else
                 {
@@ -65,6 +66,12 @@ namespace Platform
         public void DealDamage(float amount)
         {
             lightness -= amount;
+        }
+
+        public void EnemyDeath(GameObject enemy)
+        {
+            GetComponent<ScoreAdding>().AddScoreToPlayer();
+            Destroy(gameObject);
         }
     }
 }

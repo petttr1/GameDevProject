@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(ScoreAdding))]
     public class StoryPickup : MonoBehaviour
     {
         public GameObject platformToSpawn;
@@ -16,8 +17,13 @@ namespace Platform
 
         private void OnTriggerEnter(Collider other)
         {
+            // add score to player
+            GetComponent<ScoreAdding>().AddScoreToPlayer();
+            // spawn next sotry platform
             SpawnNewStoryPlatform();
+            // set thius paltform to despawn
             MyParent.GetComponentInChildren<PlatformManager>().Despawning = true;
+            // destroy the pickup
             Destroy(gameObject);
         }
 

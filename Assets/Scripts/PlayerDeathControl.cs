@@ -6,7 +6,7 @@ namespace Platform
 {
     public class PlayerDeathControl : MonoBehaviour
     {
-        [SerializeField] private GameObject MenuUI;
+        public GameObject MenuUI;
 
         private void Start()
         {

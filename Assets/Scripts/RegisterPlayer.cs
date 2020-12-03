@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(Renderer))]
+    [RequireComponent(typeof(EnemyShooting))]
     public class RegisterPlayer : MonoBehaviour
     {
         public bool Active = false;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(ScoreAdding))]
+    [RequireComponent(typeof(Renderer))]
     public class PlatformManager : MonoBehaviour
     {
         public int hitPoints = 5;
@@ -35,6 +37,8 @@ namespace Platform
             // if the paltform is not yet visited
             if (visited == false)
             {
+                // add socre for visitiong this platform
+                GetComponent<ScoreAdding>().AddScoreToPlayer();
                 // remove its emission
                 UpdateVisual();
                 // mark it as visited

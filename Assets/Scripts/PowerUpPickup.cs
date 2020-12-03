@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(ScoreAdding))]
     public class PowerUpPickup : MonoBehaviour
     {
+
         private void OnTriggerEnter(Collider other)
         {
-            GameObject player = other.gameObject;
-            player.GetComponent<Dash>().AddPowerUp();
+            // For now this is a Score Boost
+            GetComponent<ScoreAdding>().AddScoreToPlayer();
             Destroy(gameObject);
         }
     }

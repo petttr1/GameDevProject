@@ -27,12 +27,10 @@ namespace Platform
         {
             if (!GamePauseControl.GamePaused && Input.GetButtonDown("Submit"))
             {
-                Debug.Log("E pressed");
                 Navigate();
             }
             if (!GamePauseControl.GamePaused && Input.GetButtonUp("Submit")) 
             {
-                Debug.Log("E unpressed");
                 StopNavigate();
             }
         }

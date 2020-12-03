@@ -44,7 +44,7 @@ namespace Platform
             onNewStoryPlatform?.Invoke(newPlatform);
         }
 
-        public void AddPLayerScore(int score)
+        public void AddPlayerScore(int score)
         {
             onAddScore?.Invoke(score);
         }

@@ -6,7 +6,7 @@ namespace Platform
 {
     public class GamePauseControl : MonoBehaviour
     {
-        [SerializeField] private GameObject MenuUI;
+        public GameObject MenuUI;
         public static bool GamePaused = false;
 
         private void Start()
