@@ -14,6 +14,7 @@ namespace Platform
 
         public Material AimMat;
         public Material ShootMat;
+        public GameObject HitParticles;
 
         private float TimeTaken;
         private RaycastHit hit;
@@ -74,6 +75,7 @@ namespace Platform
             {
                 rend.SetPosition(1, hit.point);
                 GameObject objectHit = hit.transform.gameObject;
+                Instantiate(HitParticles, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
                 if (objectHit.GetComponentInChildren<Lightness>() != null)
                 {
                     objectHit.GetComponentInChildren<Lightness>().DealDamage(Damage);

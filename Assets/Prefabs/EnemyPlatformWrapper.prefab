@@ -257,6 +257,8 @@ MonoBehaviour:
   AimTime: 3
   AimMat: {fileID: 2100000, guid: 0c78177e1da1665458dfa7f6d74da44b, type: 2}
   ShootMat: {fileID: 2100000, guid: 34c362ba90a755948817aa6b25e61872, type: 2}
+  HitParticles: {fileID: 4275988483549333589, guid: 271b2ef75e5e48c40bf5ae26dac97129,
+    type: 3}
 --- !u!114 &3667607694875515037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,20 +272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 100
-  ActionToAddScore:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 102862707652800938}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &810134266802549700
 PrefabInstance:
   m_ObjectHideFlags: 0

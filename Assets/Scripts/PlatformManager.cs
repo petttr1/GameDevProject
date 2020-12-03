@@ -69,23 +69,15 @@ namespace Platform
             // get radius derived from the next platfroms' radii choices
             // this is the distance the platform will be from current platform
             float radius = Random.Range(nextPlatfromManager.MinRadius, nextPlatfromManager.MaxRadius);
-            // get an angle (position on a circle)
+            // get an angle (position on a half-circle)
             float random_angle = Random.Range(-90f, 90f);
-            Debug.Log($"Angle: {random_angle}");
-            Debug.Log($"Direction Adj: {DirectionAdjust}");
+            // adjst the angle to the direction player is headed in
             var dir = Quaternion.AngleAxis(random_angle, Vector3.up) * DirectionAdjust;
-            Debug.Log($"Dir: {dir}");
+            // calculate coords for the next paltform
             var coords = center + dir * radius;
-            // calculate x and y coordinate on a unit circle and multiply by radius (distance)
-            // float x_coord = Mathf.Cos(random_angle) * radius;
-            // float z_coord = Mathf.Sin(random_angle) * radius;
             // change height a bit (not the main goal, but we want variability)
-            // float y_coord = Random.Range(-3f, 3f);
-            // add the new coords to the original (makes the platfrom we landed on the center of a new coordinate system
-            // in which we generate the new platform)
             coords.y = Random.Range(-3f, 3f);
             return coords;
-            //return new Vector3(x_coord, y_coord, z_coord) + center;
         }
 
         public void UpdateVisual()

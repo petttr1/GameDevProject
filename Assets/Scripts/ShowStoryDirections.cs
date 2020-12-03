@@ -37,7 +37,7 @@ namespace Platform
         
         private void Navigate()
         {
-            rend.SetPosition(0, transform.position);
+            rend.SetPosition(0, transform.position + new Vector3(0f, 0.5f, 0f));
             rend.SetPosition(1, navigatingTo);
             rend.enabled = true;
             gameObject.GetComponentInChildren<Lightness>().DealDamage(Time.deltaTime * sacrificeRate);
