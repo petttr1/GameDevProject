@@ -94,7 +94,7 @@ namespace Platform
             return maxDashCount;
         }
 
-        private void PlayerLanded(GameObject p)
+        private void PlayerLanded(GameObject p, Vector3 d)
         {
             dash = false;
             dashCount = 0;

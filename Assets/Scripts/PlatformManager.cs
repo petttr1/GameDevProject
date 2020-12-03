@@ -46,9 +46,9 @@ namespace Platform
             }
         }
 
-        public GameObject SpawnPlatformOfType(GameObject platform, Vector3 center)
+        public GameObject SpawnPlatformOfType(GameObject platform, Vector3 center, Vector3 DirectionAdjust)
         {
-            Vector3 next_pos = CalculateNextPosition(platform, center);
+            Vector3 next_pos = CalculateNextPosition(platform, center, DirectionAdjust);
             next_pos.y = Mathf.Clamp(next_pos.y, -10f, 10f);
             GameObject next_platform = Instantiate(platform, next_pos, Quaternion.identity);
             // rotate the platform by 0-90 degrees by the vertical axis 
@@ -63,22 +63,29 @@ namespace Platform
             return next_platform;
         }
 
-        Vector3 CalculateNextPosition(GameObject next_platform, Vector3 center)
+        Vector3 CalculateNextPosition(GameObject next_platform, Vector3 center, Vector3 DirectionAdjust)
         {
             var nextPlatfromManager = next_platform.GetComponentInChildren<PlatformManager>();
-            // get radius derived from the next paltfroms' radii choices
+            // get radius derived from the next platfroms' radii choices
             // this is the distance the platform will be from current platform
             float radius = Random.Range(nextPlatfromManager.MinRadius, nextPlatfromManager.MaxRadius);
             // get an angle (position on a circle)
-            float random_angle = Random.Range(0f, 2*Mathf.PI);
+            float random_angle = Random.Range(-90f, 90f);
+            Debug.Log($"Angle: {random_angle}");
+            Debug.Log($"Direction Adj: {DirectionAdjust}");
+            var dir = Quaternion.AngleAxis(random_angle, Vector3.up) * DirectionAdjust;
+            Debug.Log($"Dir: {dir}");
+            var coords = center + dir * radius;
             // calculate x and y coordinate on a unit circle and multiply by radius (distance)
-            float x_coord = Mathf.Cos(random_angle) * radius;
-            float z_coord = Mathf.Sin(random_angle) * radius;
+            // float x_coord = Mathf.Cos(random_angle) * radius;
+            // float z_coord = Mathf.Sin(random_angle) * radius;
             // change height a bit (not the main goal, but we want variability)
-            float y_coord = Random.Range(-3f, 3f);
+            // float y_coord = Random.Range(-3f, 3f);
             // add the new coords to the original (makes the platfrom we landed on the center of a new coordinate system
             // in which we generate the new platform)
-            return new Vector3(x_coord, y_coord, z_coord) + center;
+            coords.y = Random.Range(-3f, 3f);
+            return coords;
+            //return new Vector3(x_coord, y_coord, z_coord) + center;
         }
 
         public void UpdateVisual()

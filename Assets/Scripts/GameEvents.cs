@@ -20,15 +20,15 @@ namespace Platform
             }
         }
 
-        public event Action<GameObject> onPlayerPlatformLand;
+        public event Action<GameObject, Vector3> onPlayerPlatformLand;
         public event Action<Vector3> onPlayerJump;
         public event Action onPlayerDeath;
         public event Action<Transform> onNewStoryPlatform;
         public event Action<int> onAddScore;
 
-        public void PlayerPlatformLand(GameObject platform)
+        public void PlayerPlatformLand(GameObject platform, Vector3 playerFacingDirection)
         {
-            onPlayerPlatformLand?.Invoke(platform);
+            onPlayerPlatformLand?.Invoke(platform, playerFacingDirection);
         }
         public void PlayerJump(Vector3 originalVelocity)
         {

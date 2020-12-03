@@ -29,7 +29,7 @@ namespace Platform
 
         private void SpawnNewStoryPlatform()
         {
-            GameObject next_platform = MyParent.GetComponentInChildren<PlatformManager>().SpawnPlatformOfType(platformToSpawn, MyParent.transform.position);
+            GameObject next_platform = MyParent.GetComponentInChildren<PlatformManager>().SpawnPlatformOfType(platformToSpawn, MyParent.transform.position, Vector3.forward);
             GameEvents.current.NewStoryPlatform(next_platform.transform);
         }
     }

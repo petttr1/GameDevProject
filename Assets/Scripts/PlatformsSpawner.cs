@@ -37,7 +37,7 @@ namespace Platform
             GameEvents.current.onPlayerPlatformLand -= onPlayerLand;
         }
 
-        private void onPlayerLand(GameObject active_platform)
+        private void onPlayerLand(GameObject active_platform, Vector3 playerFacingDirection)
         {
             
             // if the platform was not visited yet
@@ -48,6 +48,7 @@ namespace Platform
                 //deal damage to all other platforms
                 platforms = GameObject.FindGameObjectsWithTag("Platform");
 
+                // deal damage to every platfrom except this one
                 foreach (GameObject platform in platforms)
                 {
                     if (platform != active_platform.transform.parent.gameObject)
@@ -57,14 +58,14 @@ namespace Platform
                 }
                 // spawn new platforms
                 active_platform.GetComponent<PlatformManager>().VisitThisPlatform();
-                SpawnNewPlatforms(active_platform);
+                SpawnNewPlatforms(active_platform, playerFacingDirection);
             }
             // set our respawn point
             RespawnPoint = active_platform.transform.position;
             RespawnPoint.y += 5;
         }
 
-        private void SpawnNewPlatforms(GameObject platform)
+        private void SpawnNewPlatforms(GameObject platform, Vector3 PlayerDirection)
         {
             PlatformsSpawned = 0;
             PlatformManager manager = platform.GetComponent<PlatformManager>();
@@ -77,7 +78,7 @@ namespace Platform
                 // spawn enemies with the probability of 30%
                 if (PlatformsSpawned <= AmountSpawned && EnemyPlatforms < MaxEnemyPlatforms && Random.Range(0f, 1f) <= EnemyPlatformProba)
                 {
-                    manager.SpawnPlatformOfType(EnemyPlatform, platform.transform.position);
+                    manager.SpawnPlatformOfType(EnemyPlatform, platform.transform.position, PlayerDirection);
                     EnemyPlatforms++;
                     PlatformsSpawned++;
                 }
@@ -89,7 +90,7 @@ namespace Platform
                 // spawn rewards with the probability of 1%
                 if (PlatformsSpawned <= AmountSpawned && EnemyPlatforms < MaxEnemyPlatforms && Random.Range(0f, 1f) <= RewardPlatformProba)
                 {
-                    manager.SpawnPlatformOfType(RewardPlatform, platform.transform.position);
+                    manager.SpawnPlatformOfType(RewardPlatform, platform.transform.position, PlayerDirection);
                     RewardPlatforms++;
                     PlatformsSpawned++;
                 }
@@ -98,7 +99,7 @@ namespace Platform
             // fill in the remaining spawn slots with basic platforms
             for (int i = AmountSpawned - PlatformsSpawned; i >= 0; i--)
             {
-                manager.SpawnPlatformOfType(BasicPlatform, platform.transform.position);
+                manager.SpawnPlatformOfType(BasicPlatform, platform.transform.position, PlayerDirection);
             }
 
         }

@@ -49,7 +49,7 @@ namespace Platform
             j_Rigidbody.velocity = new Vector3(j_Rigidbody.velocity.x * JumpForwardPower, m_JumpPower, j_Rigidbody.velocity.z * JumpForwardPower);
         }
 
-        private void JumpEnded(GameObject player)
+        private void JumpEnded(GameObject player, Vector3 dir)
         {
             jumping = false;
         }
