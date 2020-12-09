@@ -8,7 +8,6 @@ namespace Platform
     {
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.transform.forward);
             GameEvents.current.PlayerPlatformLand(gameObject, other.transform.forward);
         }
     }

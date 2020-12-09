@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(AudioSource))]
     public class ShowStoryDirections : MonoBehaviour
     {
         public float sacrificeRate = 5f;
+        public AudioClip NavSound;
+
         private Vector3 navigatingTo;
         LineRenderer rend;
         // Start is called before the first frame update
@@ -37,6 +40,8 @@ namespace Platform
         
         private void Navigate()
         {
+            // play navigating sounds
+            AudioSource.PlayClipAtPoint(NavSound, gameObject.transform.position + 10* (gameObject.transform.forward));
             rend.SetPosition(0, transform.position + new Vector3(0f, 0.5f, 0f));
             rend.SetPosition(1, navigatingTo);
             rend.enabled = true;

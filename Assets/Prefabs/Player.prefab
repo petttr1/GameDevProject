@@ -1630,6 +1630,7 @@ GameObject:
   - component: {fileID: 1492946663}
   - component: {fileID: 1709632668}
   - component: {fileID: 7085409481701622035}
+  - component: {fileID: 1709632681}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1653,6 +1654,7 @@ Transform:
   - {fileID: 1753227821983548577}
   - {fileID: 4715851172807053665}
   - {fileID: 1608214613887977323}
+  - {fileID: 2452595556615166319}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1849,6 +1851,8 @@ MonoBehaviour:
   IsEnabled: 1
   dashPower: 100
   maxDashCount: 3
+  audioSource: {fileID: 8435477773409351406}
+  DashSound: {fileID: 8300000, guid: ec2e08ff6334aa74fb88e262d5464521, type: 3}
 --- !u!114 &2282452243565070280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,6 +1868,8 @@ MonoBehaviour:
   IsEnabled: 1
   forwardPower: 1.5
   upPower: 20
+  audioSource: {fileID: 8435477773409351406}
+  JumpSound: {fileID: 8300000, guid: 9e2c29767c9099c43a4b7dc587f110b1, type: 3}
 --- !u!114 &8014393040415896785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,6 +1899,7 @@ MonoBehaviour:
   lightness: 100
   fadingRate: 5
   enemy: 0
+  AmountScoreAdded: 10
   fading: 1
 --- !u!114 &1492946663
 MonoBehaviour:
@@ -1911,6 +1918,8 @@ MonoBehaviour:
   ShootiongOrigin: {fileID: 4715851172807053665}
   HitParticles: {fileID: 4275988483549333589, guid: 271b2ef75e5e48c40bf5ae26dac97129,
     type: 3}
+  audioSource: {fileID: 8435477773409351406}
+  LaserShotSounds: {fileID: 8300000, guid: 60d8ab9262c9edc43b44d0e1b98de2c0, type: 3}
 --- !u!114 &1709632668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,6 +1934,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpPower: 20
   JumpForwardPower: 1.5
+  audioSource: {fileID: 8435477773409351406}
+  JumpSound: {fileID: 8300000, guid: 9e2c29767c9099c43a4b7dc587f110b1, type: 3}
 --- !u!114 &7085409481701622035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1937,6 +1948,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb674b5ddbcfda449b8311ac4c97583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1709632681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753227821983849379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0948a2d5d8e2a34888ff10b5783fd38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sacrificeRate: 20
+  NavSound: {fileID: 8300000, guid: 5820992586c1b014d8c75d2d0b55e330, type: 3}
 --- !u!1 &1753227821983850751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3085,6 +3110,133 @@ Transform:
   m_Father: {fileID: 1753227821983510451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1927486255739649430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2452595556615166319}
+  - component: {fileID: 8435477773409351406}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2452595556615166319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927486255739649430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1753227821983575591}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &8435477773409351406
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927486255739649430}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 60d8ab9262c9edc43b44d0e1b98de2c0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 30.968338
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.9111482
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.0421191
+      outSlope: -1.0421191
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3825871287230125377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,7 +3316,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3825871287230125377}
-  m_Text: 123
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 0.15
   m_LineSpacing: 1

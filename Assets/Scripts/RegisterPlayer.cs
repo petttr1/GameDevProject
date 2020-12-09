@@ -9,6 +9,9 @@ namespace Platform
     public class RegisterPlayer : MonoBehaviour
     {
         public bool Active = false;
+        public AudioSource audioSource;
+        public AudioClip ActiveSound;
+        public AudioClip IdleSound;
 
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
@@ -33,6 +36,8 @@ namespace Platform
 
         private void OnTriggerEnter(Collider other)
         {
+            audioSource.clip = ActiveSound;
+            audioSource.Play();
             // store self color
             originalColor = rend.material.color;
             // start being active - attacking player
@@ -48,6 +53,8 @@ namespace Platform
 
         private void OnTriggerExit(Collider other)
         {
+            audioSource.clip = IdleSound;
+            audioSource.Play();
             // deactivate
             Active = false;
             // restore original color

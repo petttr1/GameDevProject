@@ -10,6 +10,9 @@ namespace Platform
         public float Damage;
         public Transform ShootiongOrigin;
         public GameObject HitParticles;
+        public AudioSource audioSource;
+        public AudioClip LaserShotSounds;
+
         private Vector3 ShootingPoint;
         RaycastHit hit;
         LineRenderer rend;
@@ -26,6 +29,7 @@ namespace Platform
         {
             if (!GamePauseControl.GamePaused && Input.GetButtonDown("Fire1"))
             {
+                audioSource.PlayOneShot(LaserShotSounds, audioSource.volume);
                 ShootingPoint = cam.ViewportToWorldPoint(new Vector3(.5f, .5f, 0));
                 rend.SetPosition(0, ShootiongOrigin.position);
                 if (Physics.Raycast(ShootingPoint, cam.transform.forward, out hit, Mathf.Infinity))

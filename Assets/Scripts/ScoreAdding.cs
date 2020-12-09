@@ -7,9 +7,8 @@ namespace Platform
 {
     public class ScoreAdding : MonoBehaviour
     {
-        public int Amount = 10;
         // Start is called before the first frame update
-        public void AddScoreToPlayer()
+        public static void AddScoreToPlayer(int Amount)
         {
             GameEvents.current.AddPlayerScore(Amount);
         }

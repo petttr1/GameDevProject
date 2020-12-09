@@ -11,6 +11,9 @@ namespace Platform
         [SerializeField] float m_JumpPower = 12f;
         [SerializeField] float JumpForwardPower = 1.5f;
 
+        public AudioSource audioSource;
+        public AudioClip JumpSound;
+
         private Rigidbody j_Rigidbody;
         private Vector3 startingVelocity;
         private bool jumping = false;
@@ -41,6 +44,7 @@ namespace Platform
 
         private void DoJump()
         {
+            audioSource.PlayOneShot(JumpSound, audioSource.volume);
             // store the velocity of the body right before jumping
             // we use this as a starting point of the second jump (if double jumping)
             // in order to avoid multiplying the velocities and floying too far

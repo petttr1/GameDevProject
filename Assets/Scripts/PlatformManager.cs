@@ -14,6 +14,8 @@ namespace Platform
         public float MinRadius;
         public float MaxRadius;
         public bool visited = false;
+        public int AmountScoreAdded = 50;
+
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
         void Start()
@@ -38,7 +40,7 @@ namespace Platform
             if (visited == false)
             {
                 // add socre for visitiong this platform
-                GetComponent<ScoreAdding>().AddScoreToPlayer();
+                ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
                 // remove its emission
                 UpdateVisual();
                 // mark it as visited

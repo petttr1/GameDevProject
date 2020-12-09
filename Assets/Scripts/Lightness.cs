@@ -10,6 +10,7 @@ namespace Platform
         public float lightness = 100;
         public float fadingRate = 5;
         public bool enemy;
+        public int AmountScoreAdded = 100;
         //whether to subtract lightness every tick
         public bool fading = false;
         private MaterialPropertyBlock propBlock;
@@ -70,7 +71,7 @@ namespace Platform
 
         public void EnemyDeath(GameObject enemy)
         {
-            GetComponent<ScoreAdding>().AddScoreToPlayer();
+            ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
             Destroy(gameObject);
         }
     }

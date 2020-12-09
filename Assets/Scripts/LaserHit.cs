@@ -14,7 +14,6 @@ namespace Platform
         {
             remainnigDur = TTL;
             laserHit = gameObject.GetComponent<ParticleSystem>();
-            // PlayLaserHit();
         }
 
         private void Update()
@@ -28,18 +27,5 @@ namespace Platform
                 Destroy(gameObject);
             }
         }
-
-        /*private IEnumerator PlayLaserHit()
-        {
-            laserHit.Play();
-            yield return new WaitForSeconds(TTL);
-            laserHit.Stop();
-            DestroyParticles();
-        }
-
-        private void DestroyParticles()
-        {
-            Destroy(gameObject);
-        }*/
     }
 }

@@ -10,6 +10,8 @@ namespace Platform
         public bool IsEnabled = true;
         public float dashPower = 300;
         public int maxDashCount = 3;
+        public AudioSource audioSource;
+        public AudioClip DashSound;
 
         private Rigidbody player_rigidbody;
 
@@ -70,6 +72,7 @@ namespace Platform
 
         public void DoDash()
         {
+            audioSource.PlayOneShot(DashSound, audioSource.volume);
             currentDashTime = 0;
             Vector3 velo = player_rigidbody.velocity;
             originalVelocity = transform.InverseTransformDirection(new Vector3(velo.x, 0, velo.z));

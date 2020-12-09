@@ -16,6 +16,9 @@ namespace Platform
         public Material ShootMat;
         public GameObject HitParticles;
 
+        public AudioSource audioSource;
+        public AudioClip LaserShotSounds;
+
         private float TimeTaken;
         private RaycastHit hit;
         private LineRenderer rend;
@@ -69,6 +72,7 @@ namespace Platform
 
         private void Shoot()
         {
+            audioSource.PlayOneShot(LaserShotSounds, audioSource.volume);
             StartCoroutine(ShotVisuals());
             rend.SetPosition(0, transform.position);
             if (Physics.Raycast(transform.position, transform.forward, out hit, ShootingRange))

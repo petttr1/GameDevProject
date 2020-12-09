@@ -12,6 +12,7 @@ namespace Platform
         private void Start()
         {
             MenuUI.SetActive(false);
+            DoResume();
         }
 
         private void Update()
@@ -27,7 +28,7 @@ namespace Platform
             if (showMenu) MenuUI.SetActive(true);
             AudioListener.pause = true;
             Time.timeScale = 0f;
-            return !GamePaused;
+            return true;
         }
 
         private bool Resume()
@@ -35,7 +36,7 @@ namespace Platform
             MenuUI.SetActive(false);
             AudioListener.pause = false;
             Time.timeScale = 1f;
-            return !GamePaused;
+            return false;
         }
 
         public void DoResume()
