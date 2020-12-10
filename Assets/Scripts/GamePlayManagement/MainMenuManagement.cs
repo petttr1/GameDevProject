@@ -7,6 +7,14 @@ namespace Platform
 {
     public class MainMenuManagement : MonoBehaviour
     {
+        public GameObject TutorialScreen;
+        public GameObject MainMenuScreen;
+
+        public void Awake()
+        {
+            TutorialScreen.SetActive(false);
+        }
+
         public void Play()
         {
             SceneManager.LoadScene(1);
@@ -16,5 +24,18 @@ namespace Platform
         {
             Application.Quit();
         }
+
+        public void Tutorial()
+        {
+            MainMenuScreen.SetActive(false);
+            TutorialScreen.SetActive(true);
+        }
+
+        public void TutorialBack()
+        {
+            TutorialScreen.SetActive(false);
+            MainMenuScreen.SetActive(true);
+        }
+            
     }
 }
