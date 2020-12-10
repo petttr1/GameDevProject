@@ -4,16 +4,15 @@ using UnityEngine;
 
 namespace Platform
 {
-    public class LaserHit : MonoBehaviour
+    public class ParticlesSpawner : MonoBehaviour
     {
         public float TTL = 0.5f;
+
         private float remainnigDur;
-        private ParticleSystem laserHit;
 
         void Start()
         {
             remainnigDur = TTL;
-            laserHit = gameObject.GetComponent<ParticleSystem>();
         }
 
         private void Update()
