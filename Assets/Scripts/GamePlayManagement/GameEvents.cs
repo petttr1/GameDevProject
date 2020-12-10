@@ -21,6 +21,7 @@ namespace Platform
         }
 
         public event Action<GameObject, Vector3> onPlayerPlatformLand;
+        public event Action<GameObject> onDealDamagePlatforms;
         public event Action<Vector3> onPlayerJump;
         public event Action onPlayerDeath;
         public event Action<Transform> onNewStoryPlatform;
@@ -30,6 +31,10 @@ namespace Platform
         {
             onPlayerPlatformLand?.Invoke(platform, playerFacingDirection);
         }
+        public void DealDamagePlatforms(GameObject activePlatform)
+        {
+            onDealDamagePlatforms?.Invoke(activePlatform);
+        }
         public void PlayerJump(Vector3 originalVelocity)
         {
             onPlayerJump?.Invoke(originalVelocity);
@@ -38,12 +43,10 @@ namespace Platform
         {
             onPlayerDeath?.Invoke();
         }
-
         public void NewStoryPlatform(Transform newPlatform)
         {
             onNewStoryPlatform?.Invoke(newPlatform);
         }
-
         public void AddPlayerScore(int score)
         {
             onAddScore?.Invoke(score);

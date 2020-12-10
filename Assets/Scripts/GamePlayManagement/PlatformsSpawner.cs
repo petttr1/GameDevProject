@@ -46,7 +46,8 @@ namespace Platform
                 // refill the players' lightness
                 player.GetComponent<Lightness>().RefillLightness(100);
                 //deal damage to all other platforms
-                platforms = GameObject.FindGameObjectsWithTag("Platform");
+                GameEvents.current.DealDamagePlatforms(active_platform);
+                /*platforms = GameObject.FindGameObjectsWithTag("Platform");
 
                 // deal damage to every platfrom except this one
                 foreach (GameObject platform in platforms)
@@ -55,7 +56,7 @@ namespace Platform
                     {
                         platform.GetComponentInChildren<PlatformManager>().DealDamage();
                     }
-                }
+                }*/
                 // spawn new platforms
                 active_platform.GetComponent<PlatformManager>().VisitThisPlatform();
                 SpawnNewPlatforms(active_platform, playerFacingDirection);

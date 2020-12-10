@@ -16,12 +16,21 @@ namespace Platform
         public bool visited = false;
         public int AmountScoreAdded = 50;
 
+        public AudioSource audioSource;
+        public AudioClip PlatformLandSOund;
+
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
         void Start()
         {
+            GameEvents.current.onDealDamagePlatforms += DealDamage;
             propBlock = new MaterialPropertyBlock();
             rend = GetComponent<Renderer>();
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.current.onDealDamagePlatforms -= DealDamage;
         }
 
         // Update is called once per frame
@@ -36,6 +45,7 @@ namespace Platform
 
         public void VisitThisPlatform()
         {
+            audioSource.PlayOneShot(PlatformLandSOund, audioSource.volume);
             // if the paltform is not yet visited
             if (visited == false)
             {
@@ -89,10 +99,10 @@ namespace Platform
             rend.SetPropertyBlock(propBlock);
         }
 
-        public void DealDamage()
+        private void DealDamage(GameObject platform)
         {
             // if any other platform was visited, deal 1 damage to all other paltforms
-            if (Despawning)
+            if (platform != gameObject && Despawning)
                 hitPoints--;
         }
     }

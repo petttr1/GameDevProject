@@ -7,7 +7,7 @@ namespace Platform
 {
     public class ScoreCounter : MonoBehaviour
     {
-        private int Score = -1010;
+        private int Score = -1050;
         private TextMesh ScoreDisplay;
         void Start()
         {

@@ -10,14 +10,12 @@ namespace Platform
         private bool IsUp = false;
         private Vector3 startPosition;
         private Vector3 endPosition;
-        private float step;
-        private GameObject MyParent;
+
         // Start is called before the first frame update
         void Start()
         {
             startPosition = transform.position;
             endPosition = transform.position + new Vector3(0f, 2f, 0f);
-            step = moveSpeed * Time.deltaTime;
         }
 
         // Update is called once per frame
@@ -37,13 +35,13 @@ namespace Platform
 
         private void moveUp()
         {
-            transform.Translate(transform.InverseTransformVector(new Vector3(0, step, 0)));
+            transform.Translate(transform.InverseTransformVector(new Vector3(0, moveSpeed * Time.deltaTime, 0)));
             // transform.position = Vector3.Lerp(startPosition, endPosition, step);
         }
 
         private void moveDown()
         {
-            transform.Translate(transform.InverseTransformVector(new Vector3(0, -step, 0)));
+            transform.Translate(transform.InverseTransformVector(new Vector3(0, -moveSpeed * Time.deltaTime, 0)));
             // transform.position = Vector3.Lerp(endPosition, startPosition, step);
         }
     }

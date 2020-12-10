@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169788612991668030}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &4803023914039665678
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ee9fd288c90b84ab506440e3e6b691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 2465638438584859119}
+  AmountScoreAdded: 500
   PickupSound: {fileID: 8300000, guid: 0bff0e6020eb87e4e8b48ee5bff11741, type: 3}
 --- !u!114 &3968106485631411201
 MonoBehaviour:
@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 500
 --- !u!1 &4208204698393536486
 GameObject:
   m_ObjectHideFlags: 0

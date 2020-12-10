@@ -190,7 +190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1865744c081068d488995c6473a03423, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,7 +222,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.89
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3359416153173926482
 MonoBehaviour:
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4141416028320b45ad7c79781aed613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AmountScoreAdded: 1000
   platformToSpawn: {fileID: 3835524245275977399, guid: 8d7be138da9075443b7d0f329fb4e80a,
     type: 3}
-  audioSource: {fileID: 6498121218672421484}
   PickupSound: {fileID: 8300000, guid: 0860488f296d289419bb37041710c164, type: 3}
 --- !u!114 &6541061105141192041
 MonoBehaviour:
@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 1000
 --- !u!1001 &3481605316175145535
 PrefabInstance:
   m_ObjectHideFlags: 0
