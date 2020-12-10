@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 509953465017222112}
   - component: {fileID: 3968106485631411201}
   - component: {fileID: 2499731493531151477}
-  - component: {fileID: 8008157719990679301}
+  - component: {fileID: 1470693572346641736}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Reward
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8008157719990679301
+--- !u!114 &1470693572346641736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1169788612991668030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80bf6506503259469600c5e047d7585, type: 3}
+  m_Script: {fileID: 11500000, guid: 374ec9a7fbe1a194fb04c6074c596af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onDestroyParticles: {fileID: 4275988483549333589, guid: e2a0ee9e22b6f884490b9c7823c01b90,
@@ -5133,7 +5133,8 @@ PrefabInstance:
       propertyPath: hitPoints
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 994c1505d27eeb546aac2989009c2708, type: 3}
 --- !u!4 &6119963409102092281 stripped
 Transform:

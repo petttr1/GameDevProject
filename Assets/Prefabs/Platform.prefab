@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3031913098963503930}
   - component: {fileID: 6497491872677649622}
   - component: {fileID: 762438461269731997}
+  - component: {fileID: 838473071949087856}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Platform
@@ -155,6 +156,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68b0cfc718ab8346b77caacaf532eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &838473071949087856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179082296214029895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374ec9a7fbe1a194fb04c6074c596af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDestroyParticles: {fileID: 4275988483549333589, guid: e2a0ee9e22b6f884490b9c7823c01b90,
+    type: 3}
 --- !u!1 &6461340019758122654
 GameObject:
   m_ObjectHideFlags: 0

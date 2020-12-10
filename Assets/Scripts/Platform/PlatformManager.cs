@@ -6,7 +6,7 @@ namespace Platform
 {
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(Renderer))]
-    [RequireComponent(typeof(ComponentDestroyer))]
+    // [RequireComponent(typeof(ComponentDestroyer))]
     public class PlatformManager : MonoBehaviour
     {
         public int hitPoints = 5;
@@ -40,7 +40,8 @@ namespace Platform
             // if the platform has 0 hp, despawn it
             if (hitPoints <= 0)
             {
-                gameObject.GetComponentInParent<ComponentDestroyer>().DestroyComponent(gameObject.transform.parent.gameObject);
+                Destroy(gameObject.transform.parent.gameObject);
+                // gameObject.GetComponentInParent<ComponentDestroyer>().DestroyComponent(gameObject.transform.parent.gameObject);
             }
         }
 

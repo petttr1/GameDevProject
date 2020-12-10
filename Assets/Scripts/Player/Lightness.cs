@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Platform
 {
     [RequireComponent(typeof(ScoreAdding))]
-    [RequireComponent(typeof(ComponentDestroyer))]
     public class Lightness : MonoBehaviour
     {
         public float lightness = 100;
@@ -73,7 +72,7 @@ namespace Platform
         public void EnemyDeath(GameObject enemy)
         {
             ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
-            GetComponent<ComponentDestroyer>().DestroyComponent(gameObject);
+            Destroy(gameObject);
         }
     }
 }

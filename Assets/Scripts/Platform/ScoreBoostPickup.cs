@@ -6,7 +6,6 @@ namespace Platform
 {
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(ComponentDestroyer))]
     public class ScoreBoostPickup : MonoBehaviour
     {
         public int AmountScoreAdded = 500;
@@ -19,7 +18,7 @@ namespace Platform
             // audioSource.PlayOneShot(PickupSound, audioSource.volume);
             // For now this is a Score Boost
             ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
-            GetComponent<ComponentDestroyer>().DestroyComponent(gameObject);
+            Destroy(gameObject);
         }
     }
 }

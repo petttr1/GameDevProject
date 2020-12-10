@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2286833411471540432}
   - component: {fileID: 5098349715154095472}
   - component: {fileID: 1051131982779552811}
-  - component: {fileID: 5726669496260124399}
+  - component: {fileID: 9037179883363262597}
   m_Layer: 0
   m_Name: StoryGoalNavigator
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   TTL: 5
---- !u!114 &5726669496260124399
+--- !u!114 &9037179883363262597
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1983352070007193245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a80bf6506503259469600c5e047d7585, type: 3}
+  m_Script: {fileID: 11500000, guid: 374ec9a7fbe1a194fb04c6074c596af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onDestroyParticles: {fileID: 4275988483549333589, guid: e2a0ee9e22b6f884490b9c7823c01b90,

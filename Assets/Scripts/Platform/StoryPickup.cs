@@ -6,7 +6,6 @@ namespace Platform
 {
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(AudioSource))]
-    [RequireComponent(typeof(ComponentDestroyer))]
     public class StoryPickup : MonoBehaviour
     {
         public int AmountScoreAdded = 1000;
@@ -31,7 +30,7 @@ namespace Platform
             // set thius paltform to despawn
             MyParent.GetComponentInChildren<PlatformManager>().Despawning = true;
             // destroy the pickup
-            GetComponent<ComponentDestroyer>().DestroyComponent(gameObject);
+            Destroy(gameObject);
         }
 
         private void SpawnNewStoryPlatform()
