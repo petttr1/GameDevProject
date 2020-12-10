@@ -30,10 +30,12 @@ namespace Platform
             dashCount = 0;
             maxDashTime = 0.1f;
             GameEvents.current.onPlayerPlatformLand += PlayerLanded;
+            GameEvents.current.onPlayerJump += ResetDashCount;
         }
         private void OnDestroy()
         {
             GameEvents.current.onPlayerPlatformLand -= PlayerLanded;
+            GameEvents.current.onPlayerJump -= ResetDashCount;
         }
 
         // Update is called once per frame
@@ -95,6 +97,11 @@ namespace Platform
         private void PlayerLanded(GameObject p, Vector3 d)
         {
             dash = false;
+            dashCount = maxDashCount;
+        }
+
+        private void ResetDashCount(Vector3 v)
+        {
             dashCount = 0;
         }
     }
