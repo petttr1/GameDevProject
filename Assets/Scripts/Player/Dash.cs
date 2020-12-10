@@ -36,11 +36,6 @@ namespace Platform
             GameEvents.current.onPlayerPlatformLand -= PlayerLanded;
         }
 
-        public void AddPowerUp()
-        {
-            enabled = true;
-        }
-
         // Update is called once per frame
         void Update()
         {

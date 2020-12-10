@@ -24,10 +24,7 @@ namespace Platform
         {
             GameEvents.current.onPlayerJump -= EnableBootsUsage;
         }
-        public void AddPowerUp()
-        {
-            enabled = true;
-        }
+
         private void Update()
         {
             // the gravity is applied when the player presses left shift,

@@ -26,10 +26,6 @@ namespace Platform
         {
             GameEvents.current.onPlayerJump -= FirstJumpStarted;
         }
-        public void AddPowerUp()
-        {
-            enabled = true;
-        }
 
         private void Update()
         {

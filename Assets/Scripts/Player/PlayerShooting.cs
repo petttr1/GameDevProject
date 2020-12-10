@@ -7,7 +7,8 @@ namespace Platform
     public class PlayerShooting : MonoBehaviour
     {
         public Camera cam;
-        public float Damage;
+        public float Damage = 50f;
+        public float Range = 30f;
         public Transform ShootiongOrigin;
         public GameObject HitParticles;
         public AudioSource audioSource;
@@ -32,7 +33,7 @@ namespace Platform
                 audioSource.PlayOneShot(LaserShotSounds, audioSource.volume);
                 ShootingPoint = cam.ViewportToWorldPoint(new Vector3(.5f, .5f, 0));
                 rend.SetPosition(0, ShootiongOrigin.position);
-                if (Physics.Raycast(ShootingPoint, cam.transform.forward, out hit, Mathf.Infinity))
+                if (Physics.Raycast(ShootingPoint, cam.transform.forward, out hit, Range))
                 {
                     rend.SetPosition(1, hit.point);
                     Instantiate(HitParticles, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));

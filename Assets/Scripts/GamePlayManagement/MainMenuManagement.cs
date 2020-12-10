@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManagement : MonoBehaviour
+namespace Platform
 {
-    public void Play()
+    public class MainMenuManagement : MonoBehaviour
     {
-        SceneManager.LoadScene(1);
-    }
+        public void Play()
+        {
+            SceneManager.LoadScene(1);
+        }
 
-    public void Exit()
-    {
-        Application.Quit();
+        public void Exit()
+        {
+            Application.Quit();
+        }
     }
 }
