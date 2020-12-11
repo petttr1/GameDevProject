@@ -26,6 +26,7 @@ namespace Platform
         public event Action onPlayerDeath;
         public event Action<Transform> onNewStoryPlatform;
         public event Action<int> onAddScore;
+        public event Action onSceneChanging;
 
         public void PlayerPlatformLand(GameObject platform, Vector3 playerFacingDirection)
         {
@@ -50,6 +51,10 @@ namespace Platform
         public void AddPlayerScore(int score)
         {
             onAddScore?.Invoke(score);
+        }
+        public void SceneChange()
+        {
+            onSceneChanging?.Invoke();
         }
     }
 }

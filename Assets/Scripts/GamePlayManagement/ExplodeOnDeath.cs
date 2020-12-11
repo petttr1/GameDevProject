@@ -3,44 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ExplodeOnDeath : MonoBehaviour
+namespace Platform
 {
-    public GameObject onDestroyParticles;
-    private bool isQuitting = false;
-
-    void OnEnable()
+    public class ExplodeOnDeath : MonoBehaviour
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        isQuitting = true;
-    }
-    void OnApplicationQuit()
-    {
-        isQuitting = true;
-    }
-
-    private void OnDestroy()
-    {
-        if (!isQuitting)
+        public GameObject onDestroyParticles;
+        private bool isQuitting = false;
+        private bool sceneRealoading = false;
+        void OnEnable()
         {
-            ParticleSystem ps = onDestroyParticles.GetComponent<ParticleSystem>();
-            ParticleSystem.MainModule psmain = ps.main;
-            MeshRenderer rend = gameObject.GetComponent<MeshRenderer>();
-            //if (rend == null)
-            //{
-            //    rend = gameObject.GetComponentInChildren<MeshRenderer>();
-            //}
-            psmain.startColor = rend.material.color;
-            Instantiate(onDestroyParticles, gameObject.transform.position, Quaternion.identity);
+            GameEvents.current.onSceneChanging += OnSceneChange;
         }
-    }
+        void OnDisable()
+        {
+            GameEvents.current.onSceneChanging -= OnSceneChange;
+        }
+        private void OnSceneChange()
+        {
+            Debug.Log("Scene reload");
+            sceneRealoading = true;
+        }
+        void OnApplicationQuit()
+        {
+            isQuitting = true;
+        }
 
+        private void OnDestroy()
+        {
+            if (!isQuitting && !sceneRealoading)
+            {
+                ParticleSystem ps = onDestroyParticles.GetComponent<ParticleSystem>();
+                ParticleSystem.MainModule psmain = ps.main;
+                MeshRenderer rend = gameObject.GetComponent<MeshRenderer>();
+                psmain.startColor = rend.material.color;
+                Instantiate(onDestroyParticles, gameObject.transform.position, Quaternion.identity);
+            }
+        }
+
+    }
 }

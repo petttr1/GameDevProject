@@ -14,11 +14,13 @@ namespace Platform
         }
         public void Restart()
         {
+            GameEvents.current.SceneChange();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
             GetComponent<GamePauseControl>().DoResume();
         }
         public void MainMenu()
         {
+            GameEvents.current.SceneChange();
             SceneManager.LoadScene(0);
             GetComponent<GamePauseControl>().DoResume();
         }
