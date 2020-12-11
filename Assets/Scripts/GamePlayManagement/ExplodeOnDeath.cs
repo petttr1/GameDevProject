@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
+    [RequireComponent(typeof(MeshRenderer))]
     public class ExplodeOnDeath : MonoBehaviour
     {
         public GameObject onDestroyParticles;

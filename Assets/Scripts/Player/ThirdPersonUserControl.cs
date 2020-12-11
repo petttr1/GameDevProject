@@ -6,6 +6,8 @@ using UnityEngine;
 namespace Platform
 {
     [RequireComponent(typeof (ThirdPersonCharacter))]
+    [RequireComponent(typeof(Dash))]
+    [RequireComponent(typeof(Rigidbody))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    [RequireComponent(typeof(GamePauseControl))]
     public class PlayerDeathControl : MonoBehaviour
     {
         public GameObject MenuUI;
@@ -21,7 +22,7 @@ namespace Platform
 
         public void PlayerDeath()
         {
-            gameObject.GetComponent<GamePauseControl>().DoPause(false);
+            GetComponent<GamePauseControl>().DoPause(false);
             MenuUI.SetActive(true);
         }
     }
