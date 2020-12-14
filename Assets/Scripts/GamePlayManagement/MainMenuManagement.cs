@@ -18,6 +18,8 @@ namespace Platform
         public void Play()
         {
             SceneManager.LoadScene(1);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void Exit()

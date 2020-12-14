@@ -11,18 +11,24 @@ namespace Platform
         public void Resume()
         {
             GetComponent<GamePauseControl>().DoResume();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         public void Restart()
         {
             GameEvents.current.SceneChange();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
             GetComponent<GamePauseControl>().DoResume();
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         public void MainMenu()
         {
             GameEvents.current.SceneChange();
             SceneManager.LoadScene(0);
             GetComponent<GamePauseControl>().DoResume();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

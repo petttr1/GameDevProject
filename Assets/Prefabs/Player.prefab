@@ -1916,7 +1916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   Damage: 50
-  Range: 50
+  Range: 100
   ShootiongOrigin: {fileID: 4715851172807053665}
   HitParticles: {fileID: 4275988483549333589, guid: 271b2ef75e5e48c40bf5ae26dac97129,
     type: 3}

@@ -21,7 +21,6 @@ namespace Platform
         }
         private void OnSceneChange()
         {
-            Debug.Log("Scene reload");
             sceneRealoading = true;
         }
         void OnApplicationQuit()

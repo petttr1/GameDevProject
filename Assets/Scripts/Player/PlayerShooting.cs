@@ -39,21 +39,26 @@ namespace Platform
                 // raycast
                 if (Physics.Raycast(ShootingPoint, cam.transform.forward, out hit, Range))
                 {
-                    // if hit, draw the line between player and hit
-                    rend.SetPosition(1, hit.point);
-                    // hit particles go off at the point of hit
-                    Instantiate(HitParticles, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
                     GameObject objectHit = hit.transform.gameObject;
                     // if the hit is enemy, deal damage
                     if (objectHit.CompareTag("Enemy"))
                     {
+                        // if hit, draw the line between player and hit
+                        rend.SetPosition(1, hit.point);
+                        // hit particles go off at the point of hit
+                        Instantiate(HitParticles, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
                         objectHit.GetComponentInChildren<Lightness>().DealDamage(Damage);
+                    }
+                    else
+                    {
+                        // else just draw the line in the dir. we are looking
+                        rend.SetPosition(1, transform.TransformPoint(transform.InverseTransformDirection(cam.transform.forward) * Range));
                     }
                 }
                 else
                 {
                     // else just draw the line in the dir. we are looking
-                    rend.SetPosition(1, cam.transform.forward * cam.farClipPlane);
+                    rend.SetPosition(1, transform.TransformPoint(transform.InverseTransformDirection(cam.transform.forward) * Range));
                 }
                 // play the laser visuals - draw the line
                 StartCoroutine(ShotVisuals());

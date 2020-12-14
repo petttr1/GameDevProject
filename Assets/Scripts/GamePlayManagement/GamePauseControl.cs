@@ -28,6 +28,8 @@ namespace Platform
             if (showMenu) MenuUI.SetActive(true);
             AudioListener.pause = true;
             Time.timeScale = 0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             return true;
         }
 
@@ -36,6 +38,8 @@ namespace Platform
             MenuUI.SetActive(false);
             AudioListener.pause = false;
             Time.timeScale = 1f;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             return false;
         }
 
