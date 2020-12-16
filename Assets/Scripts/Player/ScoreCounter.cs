@@ -11,14 +11,17 @@ namespace Platform
         private TextMesh ScoreDisplay;
         void Start()
         {
+
             ScoreDisplay = GetComponentInChildren<TextMesh>();
             DisplayScore();
             GameEvents.current.onAddScore += AddScore;
+            GameEvents.current.onPlayerDeath += PlayerDeath;
         }
 
         private void OnDestroy()
         {
             GameEvents.current.onAddScore -= AddScore;
+            GameEvents.current.onPlayerDeath -= PlayerDeath;
         }
 
         private void AddScore(int amount)
@@ -30,6 +33,11 @@ namespace Platform
         private void DisplayScore()
         {
             ScoreDisplay.text = Score.ToString();
+        }
+
+        void PlayerDeath ()
+        {
+            GameEvents.current.SetFinalScore(Score);
         }
     }
 }

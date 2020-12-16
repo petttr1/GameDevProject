@@ -24,6 +24,7 @@ namespace Platform
         public event Action<GameObject> onDealDamagePlatforms;
         public event Action<Vector3> onPlayerJump;
         public event Action onPlayerDeath;
+        public event Action<int> setFinalScore;
         public event Action<Transform> onNewStoryPlatform;
         public event Action<int> onAddScore;
         public event Action onSceneChanging;
@@ -43,6 +44,10 @@ namespace Platform
         public void PlayerDeath()
         {
             onPlayerDeath?.Invoke();
+        }
+        public void SetFinalScore(int score)
+        {
+            setFinalScore?.Invoke(score);
         }
         public void NewStoryPlatform(Transform newPlatform)
         {
