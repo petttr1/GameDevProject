@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
+    // Shows particle effects on Destroy of the component.
     [RequireComponent(typeof(MeshRenderer))]
     public class ExplodeOnDeath : MonoBehaviour
     {
@@ -13,6 +14,8 @@ namespace Platform
         private bool sceneRealoading = false;
         void OnEnable()
         {
+            // Workaround around unity automatically destroying objects when changing scenes
+            // and complaining about spawning objects in onDestroy of other objects.
             GameEvents.current.onSceneChanging += OnSceneChange;
         }
         void OnDisable()
@@ -30,6 +33,8 @@ namespace Platform
 
         private void OnDestroy()
         {
+            // check is the app is not quitting - exiting to the editor from playing, or the scene is not changing - both of which do
+            // not play well with unity. If not, spawn those juicy death aprticles.
             if (!isQuitting && !sceneRealoading)
             {
                 ParticleSystem ps = onDestroyParticles.GetComponent<ParticleSystem>();

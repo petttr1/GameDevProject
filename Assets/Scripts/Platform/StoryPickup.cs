@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Story pickup (the light blue ball) - plays nice sound and spawns a new story pickup platform far far away.
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(AudioSource))]
     public class StoryPickup : MonoBehaviour
@@ -25,9 +26,9 @@ namespace Platform
             AudioSource.PlayClipAtPoint(PickupSound, gameObject.transform.position);
             // add score to player
             ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
-            // spawn next sotry platform
+            // spawn next story platform
             SpawnNewStoryPlatform();
-            // set thius paltform to despawn
+            // set this paltform to despawn
             MyParent.GetComponentInChildren<PlatformManager>().Despawning = true;
             // destroy the pickup
             Destroy(gameObject);

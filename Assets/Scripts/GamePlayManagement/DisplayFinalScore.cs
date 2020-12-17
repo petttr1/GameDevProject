@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Platform
 {
+    // Displays the final score on Death Screen after the player dies.
     public class DisplayFinalScore : MonoBehaviour
     {
         private Text textComponent;
@@ -13,12 +14,10 @@ namespace Platform
             GameEvents.current.setFinalScore += PlayerDeath;
             textComponent = GameObject.Find("Score").GetComponent<Text>();
         }
-
         private void OnDestroy()
         {
             GameEvents.current.setFinalScore -= PlayerDeath;
         }
-
         void PlayerDeath(int score)
         {
             textComponent.text = score.ToString();

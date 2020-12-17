@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Double jumpp power up. Enabled on first jump. Depleted after use.
     [RequireComponent(typeof(Rigidbody))]
     public class DoubleJump : MonoBehaviour
     {

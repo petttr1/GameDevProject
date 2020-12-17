@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platform {
+    // Repeatedly plays songs from playlist as a background music.
     public class PlayRandomPlaylist : MonoBehaviour
     {
         public AudioClip[] TracksToPlay;

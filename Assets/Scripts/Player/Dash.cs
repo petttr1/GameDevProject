@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Dash power up. When used, moves player ion the direction they face with a high speed.
     [RequireComponent(typeof(Rigidbody))]
     public class Dash : MonoBehaviour
     {
@@ -14,14 +15,12 @@ namespace Platform
         public AudioClip DashSound;
 
         private Rigidbody player_rigidbody;
-
         private float maxDashTime;
         private bool dash;
         private float currentDashTime;
         private Vector3 originalVelocity;
         private int dashCount;
 
-        // Start is called before the first frame update
         void Start()
         {
             player_rigidbody = gameObject.GetComponent<Rigidbody>();
@@ -37,8 +36,6 @@ namespace Platform
             GameEvents.current.onPlayerPlatformLand -= PlayerLanded;
             GameEvents.current.onPlayerJump -= ResetDashCount;
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButtonDown(1) && dashCount < maxDashCount)
@@ -55,7 +52,7 @@ namespace Platform
                 currentDashTime += Time.deltaTime;
                 if (currentDashTime >= maxDashTime)
                 {
-                    // restore the original velocity - we dont want the player to go flying into infinity and beyond
+                    // restore the original velocity in the new direction the player faces - we dont want the player to go flying into infinity and beyond
                     player_rigidbody.velocity = transform.TransformDirection(transform.InverseTransformDirection(transform.forward) * originalVelocity.magnitude);
                     dash = false;
                 }
@@ -72,6 +69,7 @@ namespace Platform
             audioSource.PlayOneShot(DashSound, audioSource.volume);
             currentDashTime = 0;
             Vector3 velo = player_rigidbody.velocity;
+            // store the original velocity
             originalVelocity = transform.InverseTransformDirection(new Vector3(velo.x, 0, velo.z));
             dash = true;
         }

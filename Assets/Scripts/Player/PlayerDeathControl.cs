@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Platform
 {
+    // Manages the death screen. Shows the UI element ans final score.
     [RequireComponent(typeof(GamePauseControl))]
     public class PlayerDeathControl : MonoBehaviour
     {

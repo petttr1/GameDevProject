@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Used on pickups (the magenta balls), plays a nice sound and adds score to the player.
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(AudioSource))]
     public class ScoreBoostPickup : MonoBehaviour
@@ -15,7 +16,6 @@ namespace Platform
         {
             // play pickup sounds
             AudioSource.PlayClipAtPoint(PickupSound, gameObject.transform.position);
-            // audioSource.PlayOneShot(PickupSound, audioSource.volume);
             // For now this is a Score Boost
             ScoreAdding.AddScoreToPlayer(AmountScoreAdded);
             Destroy(gameObject);

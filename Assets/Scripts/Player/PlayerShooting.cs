@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Manages shooting for player. When (LMB) is pressed, transforms the middle point of screen to coords, raycasts and reposrts a hit.
     public class PlayerShooting : MonoBehaviour
     {
         public Camera cam;
@@ -18,14 +19,12 @@ namespace Platform
         RaycastHit hit;
         LineRenderer rend;
         private WaitForSeconds ShootingDuration = new WaitForSeconds(.1f);
-        // Start is called before the first frame update
+
         void Start()
         {
             rend = GetComponentInChildren<LineRenderer>();
             rend.enabled = false;
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (!GamePauseControl.GamePaused && Input.GetButtonDown("Fire1"))

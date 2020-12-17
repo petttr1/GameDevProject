@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Story navigatoin. After being called, moves in the direction of the next story paltfrom.
+    // Upon player reaching the story platform, its destination is set to the next one.
     [RequireComponent(typeof(AudioSource))]
     public class Navigate : MonoBehaviour
     {

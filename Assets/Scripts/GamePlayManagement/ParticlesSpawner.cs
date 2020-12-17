@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Spawns particles for a TTL seconds and destroys them.
     public class ParticlesSpawner : MonoBehaviour
     {
         public float TTL = 0.5f;

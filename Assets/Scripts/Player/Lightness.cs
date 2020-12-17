@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Lightness is HP of entities in the game. The same script is used for both the player and enemies.
     [RequireComponent(typeof(ScoreAdding))]
     public class Lightness : MonoBehaviour
     {
@@ -16,7 +17,6 @@ namespace Platform
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
 
-        // Start is called before the first frame update
         void Start()
         {
             propBlock = new MaterialPropertyBlock();
@@ -27,7 +27,6 @@ namespace Platform
             }
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (lightness > 0)
@@ -63,12 +62,10 @@ namespace Platform
         {
             lightness += amount;
         }
-
         public void DealDamage(float amount)
         {
             lightness -= amount;
         }
-
         public void EnemyDeath(GameObject enemy)
         {
             ScoreAdding.AddScoreToPlayer(AmountScoreAdded);

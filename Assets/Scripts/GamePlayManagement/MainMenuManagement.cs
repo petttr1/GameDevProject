@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
+    // Manages the main menu.
     public class MainMenuManagement : MonoBehaviour
     {
         public GameObject TutorialScreen;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Gravity boots power up. When used, moves player straight down until unpressed.
     [RequireComponent(typeof(Rigidbody))]
     public class GravityBoots : MonoBehaviour
     {

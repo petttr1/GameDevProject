@@ -64,7 +64,7 @@ namespace Platform
 			}
 		}
 
-		//***************CODE BELOW IS FROM STANDARD ASSETS AND NOT MODIFIED***************//
+		//***************CODE BELOW IS FROM STANDARD ASSETS AND NOT (Or only slightly) MODIFIED***************//
 		// THIS FUNCTION IS FROM THE ORIGINAL CLASS
 		public void Move(Vector3 move, bool jump, bool dash)
 		{

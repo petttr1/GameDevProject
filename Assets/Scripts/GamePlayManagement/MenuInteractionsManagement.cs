@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Platform
 {
+    // Manages the menu interactions.
     [RequireComponent(typeof(GamePauseControl))]
     public class MenuInteractionsManagement : MonoBehaviour
     {

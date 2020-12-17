@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Used with enemies - the orange beans. When player enters their trigger, start to aim at them. Change color to red and start to aim and shoot.
     [RequireComponent(typeof(Renderer))]
     [RequireComponent(typeof(EnemyShooting))]
     public class RegisterPlayer : MonoBehaviour
@@ -17,14 +18,12 @@ namespace Platform
         private Renderer rend;
         private GameObject player;
         private Color originalColor;
-        // Start is called before the first frame update
+
         void Start()
         {
             propBlock = new MaterialPropertyBlock();
             rend = GetComponent<Renderer>();
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (Active)
@@ -36,6 +35,7 @@ namespace Platform
 
         private void OnTriggerEnter(Collider other)
         {
+            // play angry sound
             audioSource.clip = ActiveSound;
             audioSource.Play();
             // store self color
@@ -53,6 +53,7 @@ namespace Platform
 
         private void OnTriggerExit(Collider other)
         {
+            // play not angry sound
             audioSource.clip = IdleSound;
             audioSource.Play();
             // deactivate

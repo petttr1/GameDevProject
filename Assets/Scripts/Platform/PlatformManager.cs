@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Provides the main platfrom spawner with means to spawn platforms based on most recently visited paltforms' location.
     [RequireComponent(typeof(ScoreAdding))]
     [RequireComponent(typeof(Renderer))]
-    // [RequireComponent(typeof(ComponentDestroyer))]
     public class PlatformManager : MonoBehaviour
     {
         public int hitPoints = 5;
@@ -16,37 +16,34 @@ namespace Platform
         public float MaxRadius;
         public bool visited = false;
         public int AmountScoreAdded = 50;
-
         public AudioSource audioSource;
         public AudioClip PlatformLandSOund;
 
         private MaterialPropertyBlock propBlock;
         private Renderer rend;
+
         void Start()
         {
             GameEvents.current.onDealDamagePlatforms += DealDamage;
             propBlock = new MaterialPropertyBlock();
             rend = GetComponent<Renderer>();
         }
-
         private void OnDestroy()
         {
             GameEvents.current.onDealDamagePlatforms -= DealDamage;
         }
-
-        // Update is called once per frame
         void Update()
         {
             // if the platform has 0 hp, despawn it
             if (hitPoints <= 0)
             {
                 Destroy(gameObject.transform.parent.gameObject);
-                // gameObject.GetComponentInParent<ComponentDestroyer>().DestroyComponent(gameObject.transform.parent.gameObject);
             }
         }
 
         public void VisitThisPlatform()
         {
+            // play platform visitiong sound
             audioSource.PlayOneShot(PlatformLandSOund, audioSource.volume);
             // if the paltform is not yet visited
             if (visited == false)

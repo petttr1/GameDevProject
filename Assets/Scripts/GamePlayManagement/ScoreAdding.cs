@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 namespace Platform
 {
+    // Used for adding score to player.
     public class ScoreAdding : MonoBehaviour
     {
-        // Start is called before the first frame update
         public static void AddScoreToPlayer(int Amount)
         {
             GameEvents.current.AddPlayerScore(Amount);

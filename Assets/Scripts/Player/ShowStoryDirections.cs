@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
-  
+    // After called ("E"), spawns the navuigator element, which shows the directions.
     public class ShowStoryDirections : MonoBehaviour
     {
         public float sacrificeRate = 20f;
@@ -40,6 +40,7 @@ namespace Platform
             // point it in the right direction
             nav.GetComponent<Navigate>().setDirection(navigatingTo);
         }
+        // When landing on a new sotry platfrom, set new dest for the navigator.
         private void setNewDestination(Transform newStoryPlatform)
         {
             navigatingTo = newStoryPlatform.position;

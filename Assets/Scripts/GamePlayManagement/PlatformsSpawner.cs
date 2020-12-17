@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Platform
 {
+    // Manages spawning new platforms. Rests within a gameplay manager and is ther main driver of world generation.
     public class PlatformsSpawner : MonoBehaviour
     {
         public Vector3 RespawnPoint;
@@ -24,8 +25,7 @@ namespace Platform
         private int EnemyPlatforms;
         private int RewardPlatforms;
         private int PlatformsSpawned;
-        private GameObject[] platforms;
-        // Start is called before the first frame update
+
         void Start()
         {
             GameEvents.current.onPlayerPlatformLand += onPlayerLand;
@@ -47,16 +47,6 @@ namespace Platform
                 player.GetComponent<Lightness>().RefillLightness(100);
                 //deal damage to all other platforms
                 GameEvents.current.DealDamagePlatforms(active_platform);
-                /*platforms = GameObject.FindGameObjectsWithTag("Platform");
-
-                // deal damage to every platfrom except this one
-                foreach (GameObject platform in platforms)
-                {
-                    if (platform != active_platform.transform.parent.gameObject)
-                    {
-                        platform.GetComponentInChildren<PlatformManager>().DealDamage();
-                    }
-                }*/
                 // spawn new platforms
                 active_platform.GetComponent<PlatformManager>().VisitThisPlatform();
                 SpawnNewPlatforms(active_platform, playerFacingDirection);
@@ -76,7 +66,7 @@ namespace Platform
             // if the enemy cap is not reached
             for (int i = MaxEnemyPlatforms - EnemyPlatforms; i >= 0; i--)
             {
-                // spawn enemies with the probability of 30%
+                // spawn enemies with the probability of EnemyPlatformProba %
                 if (PlatformsSpawned <= AmountSpawned && EnemyPlatforms < MaxEnemyPlatforms && Random.Range(0f, 1f) <= EnemyPlatformProba)
                 {
                     manager.SpawnPlatformOfType(EnemyPlatform, platform.transform.position, PlayerDirection);
@@ -88,7 +78,7 @@ namespace Platform
             // if the reward cap is not reached
             for (int i = MaxRewardPlatforms - RewardPlatforms; i >= 0; i--)
             {
-                // spawn rewards with the probability of 1%
+                // spawn rewards with the probability of RewardPlatformProba %
                 if (PlatformsSpawned <= AmountSpawned && EnemyPlatforms < MaxEnemyPlatforms && Random.Range(0f, 1f) <= RewardPlatformProba)
                 {
                     manager.SpawnPlatformOfType(RewardPlatform, platform.transform.position, PlayerDirection);
